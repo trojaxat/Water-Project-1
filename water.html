@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>        
+        <title>Water Project</title>
+    </head>
+    
+    <h1 id="id00"></h1>
+    <h2 id="id01">First answer a few questions</h2>
+    <h2 id="id02"></h2>
+    
+        <div id="form0"> <form id="frm0">
+        Food:<input type=radio name="frm0" onClick="checkedOption()" id="frm0Food" value = "Food">
+        Drink:<input type=radio name="frm0" onClick="checkedOption()" id="frm0Drink" value = "Drink">
+        Excercise:<input type=radio name="frm0" onClick="checkedOption()" id="frm0Excer" value = "Excercise">
+        </form>
+        <input type ="submit" onClick = "calculate()" value = "Calculate!"><br><br>
+        </div>
+    
+        <div id="form1" style="display:none"><form id="frm1">
+        Food type:<input type = "text" id="Food" name = "Food"> <br>
+        Amount of food: <input type = "text" id="Amount" name = "Amount"> <br>
+        Cooking method: <input type = "text" id="Cooking" name = "Cooking"> <br>
+        </form>
+        <input type ="submit" onClick = "addConsumableItem()" value = "Add Food Item"><br><br>
+        </div>
+    
+    
+        <div id="form2" style="display:none"><form id="frm2">
+        Excercise type: <input type = "text" id="Excercise" name = "Excerise"> <br>
+        Duration: <input type = "text" id="Duration" name = "Duration"> <br>
+        Intensity 1-5: <input type = "text" id="Intensity" name = "Intensity"> <br>
+        Outside or inside? O/I: <input type = "text" id="Outside" name = "Outside"> <br>  
+        </form>
+        <input type ="submit" onClick = "addExcerciseItem()" value = "Add Excercise Item"><br><br>
+        </div>
+    
+        <div id="form3" style="display:none"><form id="frm3">
+        Drink type: <input type = "text" id="Drink" name = "Drink"> <br>
+        Amount in ml: <input type = "text" id="Volume" name = "Volume"> <br>
+        Alcohol? Y/N: <input type = "text" id="Alcohol" name = "Alcohol"> <br> 
+        </form>
+        <input type ="submit" onClick = "addConsumableItem()" value = "Add Drink Item">        
+        </div>
+        
+        <h3 id="id03">Water Value</h3>
+        <h3 id="id04">Food</h3>
+        <h3 id="id05">Drink</h3>
+        <h3 id="id06">Excercise</h3>
+        
+            <body></body>
+    <script src="water.js"></script>
+</html>
