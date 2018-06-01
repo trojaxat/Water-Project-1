@@ -1,3 +1,5 @@
+console.log("Git Test");
+
 /////////////Start//////////////
 var base = 0;
 init();
