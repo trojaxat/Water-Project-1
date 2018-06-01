@@ -9,20 +9,6 @@
     padding: 20px;
 }
 
-.column.side {
-    float: left;
-    width: 25%;
-}
-
-.colum.middle {
-    width:50%;
-}
-
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
 
 @media screen and (max-width:600px) {
     .column {
@@ -30,19 +16,7 @@
     }
 }
 
-.body {
-    background-image: url();    /* this needs a link can have colour = linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4))*/ 
-    background-color: azure; 
-    background-size: cover;
-    background-position: center;
-    font-family: Lato;
-    font-weight: 300;
-    position: relative;
-    height: 100vh;
-    color: black;
-}
-
-.footer {
+#id03 {  /*footer*/
     background-color: aqua;
     text.align: center;
     padding: 10px;
@@ -52,3 +26,49 @@
 *** Food Drink or Excercise
 **********************************************/
 
+/*  do the layout*/
+#graphFood {
+    column: 2;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+    color: blue;
+}
+
+#graphDrink {
+    column: 3;  
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+    color: blue;
+}
+
+#graphExcercise {
+    column: 4;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+    color: blue;
+}
+
+#graphLogin {
+    column: 5;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+    color: black;
+}
+
+.column {
+    -webkit-column-count: 5; /* Chrome, Safari, Opera */
+    -moz-column-count: 5; /* Firefox */
+    column-count: 5;
+}
+
+#form0, #form1, #form2, #form3 {   /* organise so the forms stay in one column*/
+    column: 1;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+    color: black;
+}

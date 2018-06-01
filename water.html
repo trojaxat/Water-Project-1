@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <header>
         <link rel="stylesheet" href="water.css">
         <title>Water Project</title>
-    </head>
+            <h1 id="id00"></h1>
+            <h2 id="id01">First answer a few questions</h2>
+    </header>
     
-    <h1 id="id00"></h1>
-    <h2 id="id01">First answer a few questions</h2>
+
     <h2 id="id02"></h2>
-    
+        <div class="column">
         <div id="form0"> <form id="frm0">
         Food:<input type=radio name="frm0" onClick="checkedOption()" id="frm0Food" value = "Food">
         Drink:<input type=radio name="frm0" onClick="checkedOption()" id="frm0Drink" value = "Drink">
@@ -44,10 +45,23 @@
         </div>
         
         <h3 id="id03">Water Value</h3>
-        <h3 id="id04">Food</h3>
-        <h3 id="id05">Drink</h3>
-        <h3 id="id06">Excercise</h3>
+        <h3 id="id04">Food        
+        <p id="graphFood"> Food <br> Name   Amount  Cooked</p>
+        </h3>
         
+        <h3 id="id05">Drink
+        <p id="graphDrink"> Drink <br> Type  Volume  Alcohol</p>
+        </h3>
+        
+        <h3 id="id06">Excercise
+        <p id="graphExcercise"> Excercise <br>  Type    Intensity   Duration </p>
+        </h3>
+    
+        <h3 id="id07"> Log in
+        <p id="graphLogin"> Today // Month <br>  Day 1 <br> Day 2 <br> Day 3 <br> Day 4 </p>
+        </h3>
+        </div>
+    
             <body></body>
     <script src="water.js"></script>
 </html>
