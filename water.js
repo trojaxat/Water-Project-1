@@ -1,8 +1,6 @@
-console.log("Git Test"); /// has this worked?
-
 /////////////Start//////////////
 var base = 0;
-init();
+//init();
 
 function init(){
     baseQuestions();
