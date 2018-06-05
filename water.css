@@ -2,20 +2,6 @@
 *** GENERAL
 **********************************************/
 
-
-.header {
-    background-color: aqua;
-    text.align: center;
-    padding: 20px;
-}
-
-
-@media screen and (max-width:600px) {
-    .column {
-        width: 100%;
-    }
-}
-
 #id03 {  /*footer*/
     background-color: aqua;
     text.align: center;
@@ -26,9 +12,9 @@
 *** Food Drink or Excercise
 **********************************************/
 
-/*  do the layout*/
+
 #graphFood {
-    column: 2;
+    font-size: 15px;
     border-left: 1px solid gray;
     padding: 1em;
     overflow: hidden;
@@ -36,7 +22,7 @@
 }
 
 #graphDrink {
-    column: 3;  
+    font-size: 15px;
     border-left: 1px solid gray;
     padding: 1em;
     overflow: hidden;
@@ -44,7 +30,7 @@
 }
 
 #graphExcercise {
-    column: 4;
+    font-size: 15px;
     border-left: 1px solid gray;
     padding: 1em;
     overflow: hidden;
@@ -52,21 +38,15 @@
 }
 
 #graphLogin {
-    column: 5;
+    font-size: 20px;
     border-left: 1px solid gray;
     padding: 1em;
     overflow: hidden;
     color: black;
 }
 
-.column {
-    -webkit-column-count: 5; /* Chrome, Safari, Opera */
-    -moz-column-count: 5; /* Firefox */
-    column-count: 5;
-}
-
 #form0, #form1, #form2, #form3 {   /* organise so the forms stay in one column*/
-    column: 1;
+    font-size: 20px;
     border-left: 1px solid gray;
     padding: 1em;
     overflow: hidden;
