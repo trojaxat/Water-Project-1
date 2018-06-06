@@ -1,54 +1,101 @@
 /**********************************************
-*** GENERAL
+*** Header
 **********************************************/
 
-#id03 {  /*footer*/
-    background-color: aqua;
-    text.align: center;
-    padding: 10px;
-}
 
+ 
 /**********************************************
 *** Food Drink or Excercise
 **********************************************/
 
 
 #graphFood {
-    font-size: 15px;
+    font-size: 14px;
     border-left: 1px solid gray;
     padding: 1em;
     overflow: hidden;
     color: blue;
+    height: 400px;
+    background-color: whitesmoke;
+    border: 2px solid gray;
+    border-radius: 5px;
 }
 
 #graphDrink {
-    font-size: 15px;
+    font-size: 14px;
     border-left: 1px solid gray;
     padding: 1em;
     overflow: hidden;
     color: blue;
+    height: 400px;
+    bottom: auto;
+    background-color: whitesmoke;
+    border: 2px solid gray;
+    border-radius: 5px;
 }
 
 #graphExcercise {
-    font-size: 15px;
+    border-radius: 5px;
+    font-size: 14px;
     border-left: 1px solid gray;
     padding: 1em;
     overflow: hidden;
     color: blue;
+    height: 400px;
+    background-color: whitesmoke;
+    border: 2px solid gray;
+    border-radius: 5px;
 }
+
+/**********************************************
+*** Log in
+**********************************************/
 
 #graphLogin {
-    font-size: 20px;
-    border-left: 1px solid gray;
+    border-radius: 5px;
+    font-size: 15px;
+    height: 400px;
+    bottom: inherit;
+    border: 1px solid gray;
     padding: 1em;
     overflow: hidden;
     color: black;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+    box-shadow: 
 }
 
-#form0, #form1, #form2, #form3 {   /* organise so the forms stay in one column*/
+/**********************************************
+*** Forms
+**********************************************/
+
+#form1, #form2, #form3 {   /* organise so the forms stay in one column*/
     font-size: 20px;
-    border-left: 1px solid gray;
     padding: 1em;
     overflow: hidden;
     color: black;
+    border-radius: 5px;
+}
+
+input[type='radio'], #form0 {
+    font-size: 20px;
+    padding: 1em;
+    margin: 10px;
+    color: black;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+input[type='submit'] {
+    border-radius: 5px;
+}
+
+/**********************************************
+*** Water Value
+**********************************************/
+
+#id03 {  /*footer*/
+    background-color: lightblue;
+    padding: 10px;
+    border-radius: 5px;
 }

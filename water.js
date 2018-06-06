@@ -199,19 +199,27 @@ function calculate(){
     
 //////////////UI interface//////////////////////
 function addFoodItem(){
-    var link;    
+    var link = "<p> Name Amount Cooked </p><br>";    
     foodListToday.forEach(function(element){
         link = link + "<p>" + element.food + " " + element.amount + " grams and " + element.cooking + "</p>"; 
     });
-    document.getElementById("id04").innerHTML = link;
+    document.getElementById("graphFood").innerHTML = link;
+};
+
+function addFoodItem(){
+    var link = "<p> Type Intensity Duration Outside</p><br>";    
+        excerciseListToday.forEach(function(element){
+        link = link + "<p>" + element.excercise + " " + element.duration + " of " + element.intensity + " " + element.outside"</p>"; 
+    });
+    document.getElementById("graphFood").innerHTML = link;
 };
 
 function addDrinkItem(){
-    var link;    
+    var link = "<p> Type Volume Alcohol <p><br>";    
     drinkListToday.forEach(function(element){
         link = link + "<p>" + element.drink + " " + element.volume + " milliliters and " + element.alcohol + "</p>"; 
     });
-    document.getElementById("id05").innerHTML = link;   
+    document.getElementById("graphDrink").innerHTML = link;   
 };
 
 function checkedOption(){  

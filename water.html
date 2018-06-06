@@ -1,66 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-    <header>
+    <head>
+        <!-- meta tags so it works for mobiles and scales up-->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
+        
+        <!-- bootstrap link css link -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        
         <link rel="stylesheet" href="water.css">
         <title>Water Project</title>
             <h1 id="id00"></h1>
+        <div style="text-align:center">
             <h2 id="id01">First answer a few questions</h2>
-    </header>
-    
-
-    <h2 id="id02"></h2>
-        <div class="column">
-        <div id="form0"> <form id="frm0">
-        Food:<input type=radio name="frm0" onClick="checkedOption()" id="frm0Food" value = "Food">
-        Drink:<input type=radio name="frm0" onClick="checkedOption()" id="frm0Drink" value = "Drink">
-        Excercise:<input type=radio name="frm0" onClick="checkedOption()" id="frm0Excer" value = "Excercise">
-        </form>
-        <input type ="submit" id="Cal" onClick = "calculate()" value = "Calculate!"><br><br>
         </div>
+    </head>
     
-        <div id="form1" style="display:none"><form id="frm1">
-        Food type:<input type = "text" id="Food" name = "Food"> <br>
+    
+    <h2 id="id02"></h2>
+    
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col-sm">
+            <div id="form0"> 
+                    <form id="frm0">
+        <input type=radio name="frm0" onClick="checkedOption()" id="frm0Food" value = "Food">
+            <label for="frm0Food">Food</label><br/>
+        <input type=radio name="frm0" onClick="checkedOption()" id="frm0Drink" value = "Drink">
+            <label for="frm0Drink">Drink</label><br/>
+        <input type=radio name="frm0" onClick="checkedOption()" id="frm0Excer" value = "Excercise">
+            <label for="frm0Excer">Excercise</label><br/>
+                    </form>
+            </div>    
+        
+            <div id="form1" style="display:none">
+                    <form id="frm1">
+        Food type: <input type = "text" id="Food" name = "Food"> <br>
         Amount of food: <input type = "text" id="Amount" name = "Amount"> <br>
         Cooking method: <input type = "text" id="Cooking" name = "Cooking"> <br>
-        </form>
-        <input type ="submit" onClick = "addConsumableItem()" value = "Add Food Item"><br><br>
-        </div>
-    
-    
-        <div id="form2" style="display:none"><form id="frm2">
-        Excercise type: <input type = "text" id="Excercise" name = "Excerise"> <br>
-        Duration: <input type = "text" id="Duration" name = "Duration"> <br>
-        Intensity 1-5: <input type = "text" id="Intensity" name = "Intensity"> <br>
-        Outside or inside? O/I: <input type = "text" id="Outside" name = "Outside"> <br>  
-        </form>
-        <input type ="submit" onClick = "addExcerciseItem()" value = "Add Excercise Item"><br><br>
-        </div>
-    
-        <div id="form3" style="display:none"><form id="frm3">
-        Drink type: <input type = "text" id="Drink" name = "Drink"> <br>
-        Amount in ml: <input type = "text" id="Volume" name = "Volume"> <br>
-        Alcohol? Y/N: <input type = "text" id="Alcohol" name = "Alcohol"> <br> 
-        </form>
-        <input type ="submit" onClick = "addConsumableItem()" value = "Add Drink Item">        
-        </div>
+                    </form>
+                <input type ="submit" onClick = "addConsumableItem()" value = "Add Food Item"><br>
+            </div>
         
-        <h3 id="id03">Water Value</h3>
-        <h3 id="id04">Food        
-        <p id="graphFood"> Food <br> Name   Amount  Cooked</p>
-        </h3>
-        
-        <h3 id="id05">Drink
-        <p id="graphDrink"> Drink <br> Type  Volume  Alcohol</p>
-        </h3>
-        
-        <h3 id="id06">Excercise
-        <p id="graphExcercise"> Excercise <br>  Type    Intensity   Duration </p>
-        </h3>
+            <div id="form2" style="display:none">
+                <form id="frm2">
+        Excercise type <input type = "text" id="Excercise" name = "Excerise"> <br>
+        Duration <input type = "text" id="Duration" name = "Duration"> <br>
+        Intensity 1-5 <input type = "text" id="Intensity" name = "Intensity"> <br>
+        Outside or inside? O/I <input type = "text" id="Outside" name = "Outside"> <br>  
+                </form>
+                    <input type ="submit" onClick = "addExcerciseItem()" value = "Add Excercise Item"><br><br>
+            </div>  
     
-        <h3 id="id07"> Log in
-        <p id="graphLogin"> Today // Month <br>  Day 1 <br> Day 2 <br> Day 3 <br> Day 4 </p>
-        </h3>
+            <div id="form3" style="display:none" style="text-align:left">
+                <form id="frm3">
+        Drink type <input type = "text" id="Drink" name = "Drink"> <br>
+        Amount in ml <input type = "text" id="Volume" name = "Volume"> <br>
+        Alcohol? Y/N <input type = "text" id="Alcohol" name = "Alcohol"> <br> 
+                </form>
+                    <input type ="submit" onClick = "addConsumableItem()" value = "Add Drink Item">        
+            </div>
+            </div>
+                    
+                <div class="col-sm">
+                    <h3 id="id04" style="text-align:center">
+                        <label for="id04">Food</label>        
+                        <p id="graphFood">Name   Amount  Cooked</p><br>
+                        <p id="foodItems"></p>
+                    </h3>
+                </div>
+    
+
+            <div class="col-sm">
+                <h3 id="id05" style="text-align:center">
+                    <label for="id05">Drink</label>
+                    <p id="graphDrink">Type  Volume  Alcohol</p><br>
+                    <p id="drinkItems"></p>
+                </h3>
+            </div>
+        
+                <div class="col-sm">
+                    <h3 id="id06" style="text-align:center">
+                        <label for="id06">Excercise</label>
+                            <p id="graphExcercise">Type Intensity Duration </p><br>
+                            <p id="excerciseItems"></p>
+                    </h3>
+                </div>
+    
+            <div class="col-sm" style="text-align:center">
+                <h3 id="id07">
+                    <label for="id07">Log in</label>
+                <p id="graphLogin" style="text-align:left"> Today // Month <br><br>  Day 1 <br> Day 2 <br> Day 3 <br> Day 4 </p>
+            </h3>
         </div>
+        <div>
+        </div>
+    
+    
+        <div class="container-fluid">
+            <div class="row align-items-end">
+            <h3 id="id03">Water Value  <input type ="submit" id="Cal" onClick = "calculate()" value = "Calculate!"><br><br></h3>
+        </div>
+    </div>
+
     
             <body></body>
     <script src="water.js"></script>
