@@ -28,49 +28,51 @@
             <label for="frm0Food">Food</label><br/>
         <input type=radio name="frm0" onClick="checkedOption()" id="frm0Drink" value = "Drink">
             <label for="frm0Drink">Drink</label><br/>
-        <input type=radio name="frm0" onClick="checkedOption()" id="frm0Excer" value = "Excercise">
-            <label for="frm0Excer">Excercise</label><br/>
+        <input type=radio name="frm0" onClick="checkedOption()" id="frm0Excer" value = "Excercise" checked>
+            <label for="frm0Excer">Excercise</label>
                     </form>
             </div>    
         
             <div id="form1" style="display:none">
                     <form id="frm1">
-        Food type: <input type = "text" id="Food" name = "Food"> <br>
-        Amount of food: <input type = "text" id="Amount" name = "Amount"> <br>
-        Cooking method: <input type = "text" id="Cooking" name = "Cooking"> <br>
+        Food<input type = "text" id="Food" name = "Food" placeholder="Bread, Cheese, Apple.."> <br>
+        Amount (grams)<input type = "text" id="Amount" name = "Amount" placeholder="200"> <br>
+        Cooking method<input type = "text" id="Cooking" name = "Cooking" placeholder="Raw, Boiled.."> <br>
                     </form>
-                <input type ="submit" onClick = "addConsumableItem()" value = "Add Food Item"><br>
+                <input type ="submit" onClick = "addConsumableItem()" value = "Add Food"><br>
             </div>
         
             <div id="form2" style="display:none">
                 <form id="frm2">
-        Excercise type <input type = "text" id="Excercise" name = "Excerise"> <br>
-        Duration <input type = "text" id="Duration" name = "Duration"> <br>
-        Intensity 1-5 <input type = "text" id="Intensity" name = "Intensity"> <br>
-        Outside or inside? O/I <input type = "text" id="Outside" name = "Outside"> <br>  
+        Excercise type <input type = "text" id="Excercise" name = "Excerise" placeholder="Climbing, Running, etc.."> <br>
+        Duration (Mins)<input type = "text" id="Duration" name = "Duration" placeholder="15"> <br>
+        Intensity <input type = "text" id="Intensity" name = "Intensity" placeholder="1-5, 5 is the most"> <br>
+        Outside or Inside? <input type = "text" id="Outside" name = "Outside" placeholder="O or I"> <br>  
                 </form>
-                    <input type ="submit" onClick = "addExcerciseItem()" value = "Add Excercise Item"><br><br>
+                    <input type ="submit" onClick = "addExcerciseItem()" value = "Add Excercise"><br><br>
             </div>  
     
             <div id="form3" style="display:none" style="text-align:left">
                 <form id="frm3">
-        Drink type <input type = "text" id="Drink" name = "Drink"> <br>
-        Amount in ml <input type = "text" id="Volume" name = "Volume"> <br>
-        Alcohol? Y/N <input type = "text" id="Alcohol" name = "Alcohol"> <br> 
+        Drink <input type = "text" id="Drink" name = "Drink" placeholder="Beer, Water, Coke.."> <br>
+        Amount (ml)<input type = "text" id="Volume" name = "Volume" placeholder="100"> <br>
+        Alcohol? <input type = "text" id="Alcohol" name = "Alcohol" placeholder="Y or N"> <br> 
                 </form>
-                    <input type ="submit" onClick = "addConsumableItem()" value = "Add Drink Item">        
+                    <input type ="submit" onClick = "addConsumableItem()" value = "Add Drink">        
             </div>
             </div>
-                    
+                                
                 <div class="col-sm">
                     <h3 id="id04" style="text-align:center">
                         <label for="id04">Food</label>        
                         <p id="graphFood">Name   Amount  Cooked</p><br>
                         <p id="foodItems"></p>
                     </h3>
-                </div>
-    
+                    <div class="container">
+                    </div>
 
+                </div>
+                 
             <div class="col-sm">
                 <h3 id="id05" style="text-align:center">
                     <label for="id05">Drink</label>
@@ -82,7 +84,7 @@
                 <div class="col-sm">
                     <h3 id="id06" style="text-align:center">
                         <label for="id06">Excercise</label>
-                            <p id="graphExcercise">Type Intensity Duration </p><br>
+                            <p id="graphExcercise">Type Intensity Duration O/I</p><br>
                             <p id="excerciseItems"></p>
                     </h3>
                 </div>
@@ -92,17 +94,12 @@
                     <label for="id07">Log in</label>
                 <p id="graphLogin" style="text-align:left"> Today // Month <br><br>  Day 1 <br> Day 2 <br> Day 3 <br> Day 4 </p>
             </h3>
+            </div>
         </div>
-        <div>
-        </div>
-    
-    
-        <div class="container-fluid">
-            <div class="row align-items-end">
-            <h3 id="id03">Water Value  <input type ="submit" id="Cal" onClick = "calculate()" value = "Calculate!"><br><br></h3>
-        </div>
-    </div>
 
+            <div class="row align-items-end">
+                <h3 id="id03">Water Value  <input type ="submit" id="Cal" onClick = "calculate()" value = "Calculate!"><br><br></h3>
+            </div>
     
             <body></body>
     <script src="water.js"></script>
