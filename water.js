@@ -142,7 +142,7 @@ function addExcerciseItem(){
     var outside = document.getElementById('Outside').value;
         if (excercise !== null && excercise !== '' && duration !== null && duration !== '' && intensity !== null && intensity !== '' && outside !== null && outside !== ''){
             excerciseListToday.push(excerciseItem(excercise, duration, intensity, outside));
-            addExcerciseItem();
+            addExcercise();
             document.getElementById("frm2").reset();
     } else {
             document.getElementById("frm2").reset();
@@ -207,7 +207,7 @@ function addFoodItem(){
     document.getElementById("graphFood").innerHTML = link;
 };
 
-function addExcerciseItem(){
+function addExcercise(){
     var link = "<p> Type Intensity Duration OI</p><br>";    
         excerciseListToday.forEach(function(element){
             link = link + "<p>" + element.excercise + " " + element.duration + " of " + element.intensity + " " + element.outside + "</p>"; 
