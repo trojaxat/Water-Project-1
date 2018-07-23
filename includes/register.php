@@ -7,10 +7,8 @@ if (isset($_POST['register'])) {
 	$last = mysqli_real_escape_string($conn, $_POST['last']);
 	$username = mysqli_real_escape_string($conn, $_POST['username']);
 	$email = mysqli_real_escape_string($conn, $_POST['email']);
-	$DOB L= mysqli_real_escape_string($conn, $_POST['DOB']);
-	$gender = mysqli_real_escape_string($conn, $_POST['gender']);
 	
-if(empty($name) || empty($last) || empty($username) || empty($email) || empty($DOB) || empty($gender)) {
+if(empty($name) || empty($last) || empty($username) || empty($email)) {
 	header("Location: ../register.php")
 	exit();
 } else {
@@ -30,7 +28,7 @@ if(empty($name) || empty($last) || empty($username) || empty($email) || empty($D
 				header("Location: ../register.php?register=usertaken");
 				exit();
 			} else {
-				$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+				$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 				$sql = "INSERT INTO web_members (name, last, username, email, DOB, gender) VALUES ('$name', '$last', '$username', '$email', '$DOB', '$gender');";
 				mysqli_query($conn, $sql);
 				header("Location: ../register.php?register=login_success");
