@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['Register'])) {
+if (isset($_POST['register'])) {
 	include_once 'checklogin.php';
 	
 	$Name = mysqli_real_escape_string($conn, $_POST['Name']);
@@ -14,12 +14,12 @@ if(empty($Name) || empty($Last) || empty($Username) || empty($Email) || empty($D
 	header("Location: ../register.php")
 	exit();
 } else {
-	if (!preg_match("/^[a-zA-Z]*$", $Name) || !preg_match("/^[a-zA-Z]*$", $Last)) {	
+	if (!preg_match("/^[a-zA-Z]*$/", $Name) || !preg_match("/^[a-zA-Z]*$/", $Last)) {	
 		header("Location: ../register.php")
 		exit();
 	} else {
 		if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
-			header("Location: ../Register.php?Register=Email");
+			header("Location: ../register.php?register=Email");
 			exit();
 		} else {
 			$sql = "SELECT * FROM web_members WHERE Username = '$Username'";
@@ -27,13 +27,13 @@ if(empty($Name) || empty($Last) || empty($Username) || empty($Email) || empty($D
 			$resultCheck = mysql_num_rows($result);
 			
 			if ($resultCheck > 0) {
-				header("Location: ../Register.php?Register=usertaken");
+				header("Location: ../register.php?register=usertaken");
 				exit();
 			} else {
 				$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 				$sql = "INSERT INTO web_members (Name, Last, Username, Email, DOB, Gender) VALUES ('$Name', '$Last', '$Username', '$Email', '$DOB', '$Gender');";
 				mysqli_query($conn, $sql);
-				header("Location: ../Register.php?Register=login_success");
+				header("Location: ../register.php?register=login_success");
 				exit();
 } else {
 		header("Location: ../register.php")
