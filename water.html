@@ -93,7 +93,7 @@
                      <input class="register button" id="registerToggle" type="submit" onClick = "registerToggle()" value="Register">
             </label>
             <div id="Login" style="display:blocked">
-                <form  id="frmLogin" action="login.php" autocomplete="on">
+                <form  id="frmLogin" action="includes/checklogin.php" autocomplete="on">
                      <h3 id="id07">Log in</h3>
 
                      <p> 
@@ -109,13 +109,13 @@
                           <label for="loginkeeping">Keep me logged in</label>
                      </p>
                      <p class="login button"> 
-                          <input type="submit" value="Login" /> 
+                          <input name="Login" type="submit" value="Login" /> 
                      </p>
                 </form>
             </div>
             
         <div id="Register" style="display:none">
-            <form action="register.php" autocomplete="on"> 
+            <form action="includes/register.php" autocomplete="on" method="POST"> 
                 <h1> Sign up </h1> 
                 <p> 
                      <label for="firstnamesignup" class="fname" data-icon="u">First Name:</label>
@@ -203,7 +203,7 @@
                      </select>
                 </p>
                 <p class="signin button"> 
-                <input type="submit" value="Register"/> 
+                <input type="submit" name="Register" value="Register"/> 
                 </p>
 
             </form>
