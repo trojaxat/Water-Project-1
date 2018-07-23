@@ -2,12 +2,12 @@
 var base = 0;
 //init();
 
-function init(){
+function init() {
     baseQuestions();
     html();
 };
 
-function html(){
+function html() {
     var result = Math.round(personBaseValue()*100)/100;
     document.getElementById("id00").innerHTML = "Water Project";
     document.getElementById("id01").innerHTML = "<p>Hello " + personObj.name + "! You are " + personObj.height + " cm tall and weigh " + personObj.weight + " kg.</p>";
@@ -17,7 +17,7 @@ function html(){
 
 
 /////////////////Water Section//////////////
-function baseQuestions(){
+function baseQuestions() {
     var name, gender, weight, height, fitness, disease, person;
     name = prompt("What is your name?")
     gender = prompt("Hello " + name + ", are you male or female? m/f");
@@ -39,7 +39,7 @@ function baseQuestions(){
     return personObj = person(name, gender, weight, height, fitness, disease);
 };
 
-function personBaseValue(){
+function personBaseValue() {
     var newBase, weightManR, weightFemR, heightManR, heightFemR, weightHeightMan, weightHeightFem, diseaseR;
     
     weightManR = personObj.weight/82;
@@ -208,7 +208,7 @@ function addFoodItem(){
 };
 
 function addExcerciseItem(){
-    var link = "<p> Type Intensity Duration Outside</p><br>";    
+    var link = "<p> Type Intensity Duration OI</p><br>";    
         excerciseListToday.forEach(function(element){
             link = link + "<p>" + element.excercise + " " + element.duration + " of " + element.intensity + " " + element.outside + "</p>"; 
     });
@@ -239,7 +239,20 @@ function checkedOption(){
     }
 };
 
-
+function registerToggle(){
+    var z = document.getElementById("Login");
+    var y = document.getElementById("Register");
+    var x = document.getElementById("registerToggle")
+    if (z.style.display == "none") {
+        z.style.display = "block";
+        y.style.display = "none";
+        x.value = "Register";
+    } else {
+        z.style.display = "none";
+        y.style.display = "block";
+        x.value = "Login";
+    }
+};
 
 ////////////////Start////////////////////////////    to seperate second half
 function init2(){

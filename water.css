@@ -51,10 +51,23 @@
 *** Log in
 **********************************************/
 
-#graphLogin {
+#Login {
     border-radius: 5px;
     font-size: 15px;
     height: 400px;
+    bottom: inherit;
+    border: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+    color: black;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+    box-shadow: 
+}
+
+#Register {
+    border-radius: 5px;
+    font-size: 15px;
     bottom: inherit;
     border: 1px solid gray;
     padding: 1em;
