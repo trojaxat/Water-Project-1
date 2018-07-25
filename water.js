@@ -240,8 +240,8 @@ function checkedOption(){
 };
 
 function registerToggle(){
-    var z = document.getElementById("Login");
-    var y = document.getElementById("Register");
+    var z = document.getElementById("login");
+    var y = document.getElementById("register");
     var x = document.getElementById("registerToggle")
     if (z.style.display == "none") {
         z.style.display = "block";

@@ -1,6 +1,6 @@
 <?php
 
-$dbServername="localhost"; // Host name
+$dbServername="localhost:3306"; // Host name
 $dbUsername="root"; // Mysql username
 $dbPassword=""; // Mysql password
 $dbName="water_login"; // Database name
