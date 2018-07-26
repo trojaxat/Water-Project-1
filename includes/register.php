@@ -34,8 +34,10 @@ if (isset($_POST['register'])) {
 				  header("Location: ../waterregister.php?register=usertaken");
 				  exit();
 			  } else {
-                $sql = "INSERT INTO web_members (name, last, username, email, password, day, month, year, gender) VALUES ('$name', '$last', '$username', '$email', '$hashedPwd', '$day', '$month', '$year', '$gender');";
-				  header("Location: ../waterregister.php?register=success");
+                  $sql = "INSERT INTO web_members (name, last, username, email, password, day, month, year, gender) VALUES ('$name', '$last', '$username', '$email', '$hashedPwd', '$day', '$month', '$year', '$gender');";
+                  mysqli_query($conn, $sql);
+				  header("Location: ../water.html");
+                  //insert javascript to show registration successful
 				  exit();
                 }
 			}
