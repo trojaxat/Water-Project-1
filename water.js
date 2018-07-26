@@ -5,14 +5,14 @@ var base = 0;
 function init() {
     baseQuestions();
     html();
-};
+}
 
 function html() {
     var result = Math.round(personBaseValue()*100)/100;
     document.getElementById("id00").innerHTML = "Water Project";
     document.getElementById("id01").innerHTML = "<p>Hello " + personObj.name + "! You are " + personObj.height + " cm tall and weigh " + personObj.weight + " kg.</p>";
     document.getElementById("id02").innerHTML = "<p>You currently need to drink " + result + " litres of water per day.</p>";
-};
+}
 
 
 
@@ -37,7 +37,7 @@ function baseQuestions() {
         };
     }
     return personObj = person(name, gender, weight, height, fitness, disease);
-};
+}
 
 function personBaseValue() {
     var newBase, weightManR, weightFemR, heightManR, heightFemR, weightHeightMan, weightHeightFem, diseaseR;
@@ -71,7 +71,7 @@ function personBaseValue() {
     }
     
     return newBase;
-};
+}
 
 
 
@@ -95,7 +95,7 @@ function consumableItem(food, amount, cooking, drink, volume, alcohol, water, su
             water: water,
             sugar: sugar
         };
-};
+}
 
 function addConsumableItem(){
     var food = document.getElementById('Food').value;
@@ -117,7 +117,7 @@ function addConsumableItem(){
             document.getElementById("frm1").reset();
             document.getElementById("frm3").reset();
     }
-};
+}
 
 
 
@@ -133,7 +133,7 @@ function excerciseItem(excercise, duration, intensity, outside) {
             outside: outside
         };
 
-};
+}
 
 function addExcerciseItem(){
     var excercise = document.getElementById('Excercise').value;
@@ -148,7 +148,7 @@ function addExcerciseItem(){
             document.getElementById("frm2").reset();
     }
 
-};
+}
 
 function excerciseWaterValue(){
     var excercise, duration, intensity, outside, additionalWater, weather; 
@@ -163,7 +163,7 @@ function excerciseWaterValue(){
               } 
         }
     return additionalWater;
-};
+}
 
 
 
@@ -181,7 +181,7 @@ function consumedWaterValue(){
               } 
         }
     return additionalWater;
-};
+}
 
 function objectWaterValue(){
     var totalList = foodListToday + drinkListToday + alcoholListToday + excerciseListToday;
@@ -189,12 +189,12 @@ function objectWaterValue(){
           console.log(foodListToday[x]);
       }
       
-};
+}
 
 function calculate(){
       var result = excerciseWaterValue();
       document.getElementById("id03").innerHTML = "<p>Due to " + excerciseListToday[0].excercise + " and " + excerciseListToday[1].excercise + " you need to drink " + result + " extra litres of water today.</p>";
-};
+}
 
 
     
@@ -205,7 +205,7 @@ function addFoodItem(){
         link = link + "<p>" + element.food + " " + element.amount + " grams and " + element.cooking + "</p>"; 
     });
     document.getElementById("graphFood").innerHTML = link;
-};
+}
 
 function addExcercise(){
     var link = "<p> Type Intensity Duration OI</p><br>";    
@@ -213,7 +213,7 @@ function addExcercise(){
             link = link + "<p>" + element.excercise + " " + element.duration + " of " + element.intensity + " " + element.outside + "</p>"; 
     });
     document.getElementById("graphExcercise").innerHTML = link;
-};
+}
 
 function addDrinkItem(){
     var link = "<p> Type Volume Alcohol </p><br>";    
@@ -221,7 +221,7 @@ function addDrinkItem(){
         link = link + "<p>" + element.drink + " " + element.volume + " milliliters and " + element.alcohol + "</p>"; 
     });
     document.getElementById("graphDrink").innerHTML = link;   
-};
+}
 
 function checkedOption(){  
     if (document.getElementById("frm0Food").checked == true) { 
@@ -237,7 +237,7 @@ function checkedOption(){
             document.getElementById("form2").style.display = "block";
             document.getElementById("form3").style.display = "none";
     }
-};
+}
 
 function registerToggle(){
     var z = document.getElementById("login");
@@ -252,14 +252,14 @@ function registerToggle(){
         y.style.display = "block";
         x.value = "Login";
     }
-};
+}
 
 ////////////////Start////////////////////////////    to seperate second half
 function init2(){
     var result = excerciseWaterValue();
     checkedOption();
     //document.getElementById("id03").innerHTML = "<p>Due to " + excerciseListToday[0].excercise + " you need to drink " + result + " extra litres of water today.</p>";// change this to scroll through sporting activities and say how much more water due to sport//
-};
+}
 
 init2();
 
