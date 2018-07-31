@@ -254,6 +254,11 @@ function registerToggle(){
     }
 }
 
+function checkRegister(){
+    $.ajax.fail(function(jqXHR) {
+    alert(jqXHR.statusText);
+})
+}
 
 ////////////////Start////////////////////////////    to seperate second half
 function init2(){
