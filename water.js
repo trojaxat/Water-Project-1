@@ -254,6 +254,7 @@ function registerToggle(){
     }
 }
 
+
 ////////////////Start////////////////////////////    to seperate second half
 function init2(){
     var result = excerciseWaterValue();
