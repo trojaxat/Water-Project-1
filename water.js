@@ -82,8 +82,6 @@ var foodListToday = [];
 var drinkListToday = [];
 var alcoholListToday = [];
 
-foodListToday.push(consumableItem("apple", 100, "raw", 0, 20, 10));
-
 function consumableItem(food, amount, cooking, drink, volume, alcohol, water, sugar) {
     return {
             food: food,
@@ -123,7 +121,6 @@ function addConsumableItem(){
 
 //////////////Excercise/////////////////////
 var excerciseListToday = [];
-excerciseListToday.push(excerciseItem("climbing", 100, 4, true));
 
 function excerciseItem(excercise, duration, intensity, outside) {
     return {
@@ -213,6 +210,29 @@ function addExcercise(){
             link = link + "<p>" + element.excercise + " " + element.duration + " of " + element.intensity + " " + element.outside + "</p>"; 
     });
     document.getElementById("graphExcercise").innerHTML = link;
+        var newExc = excerciseListToday[excerciseListToday-1];
+        var exc = newExc.excercise;
+        var dur = newExc.duration;
+        var int = newExc.intensity;
+        var out = newExc.outside;
+    
+        var post  = {Excercise: newExc.excercise, Duration:newExc.duration, int:newExc.intensity, out:newExc.outside };
+    
+        var mysql = require('mysql');
+
+        var con = mysql.createConnection({
+          host: "localhost:3306",
+          user: "dan",
+          password: "dan",
+          database: "water_login"
+        });
+
+          con.query("INSERT INTO excercise (username, Excercise, Amount, Intensity, Outside, Date) VALUES ?", [post], function (err, result, fields) {
+            if (err) throw err;
+            console.log(result);
+          });
+});
+    
 }
 
 function addDrinkItem(){

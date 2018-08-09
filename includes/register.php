@@ -39,6 +39,7 @@ if (isset($_POST['register'])) {
                   mysqli_query($conn, $sql);
 				  header("Register updated!", TRUE, 200);
                   checkRegister();
+                  header("Location: ../waterlogged.html"); 
 				  exit();
                 }
 			}
