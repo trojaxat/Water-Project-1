@@ -210,13 +210,17 @@ function addExcercise(){
             link = link + "<p>" + element.excercise + " " + element.duration + " of " + element.intensity + " " + element.outside + "</p>"; 
     });
     document.getElementById("graphExcercise").innerHTML = link;
-        var newExc = excerciseListToday[excerciseListToday-1];
+    
+        var newExc = excerciseListToday[excerciseListToday.length-1];
         var exc = newExc.excercise;
         var dur = newExc.duration;
         var int = newExc.intensity;
         var out = newExc.outside;
     
-        var post  = {Excercise: newExc.excercise, Duration:newExc.duration, int:newExc.intensity, out:newExc.outside };
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+    
+        var post  = {Excercise: newExc.excercise, Duration:newExc.duration, Intensity:newExc.intensity, Outside:newExc.outside, Date:today };
     
         var mysql = require('mysql');
 
@@ -231,9 +235,9 @@ function addExcercise(){
             if (err) throw err;
             console.log(result);
           });
-});
-    
 }
+    
+
 
 function addDrinkItem(){
     var link = "<p> Type Volume Alcohol </p><br>";    
