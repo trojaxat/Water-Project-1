@@ -1,24 +1,24 @@
 <?php
 
-if (isset($_POST['food'])) {
+if (isset($_POST['drink'])) {
 	
   include_once 'dblogin.php';
 	
 	$username = mysqli_real_escape_string($conn, $_POST['username']);
-    $Food = mysqli_real_escape_string($conn, $_POST['Food']);
-    $Amount = mysqli_real_escape_string($conn, $_POST['Amount']);
-	$Cooking = mysqli_real_escape_string($conn, $_POST['Cooking']);
+    $Drink = mysqli_real_escape_string($conn, $_POST['Drink']);
+    $Volulme = mysqli_real_escape_string($conn, $_POST['Volume']);
+	$Alcohol = mysqli_real_escape_string($conn, $_POST['Alcohol']);
     $Date = mysqli_real_escape_string($conn, $_POST['Date']);
     
-  if(empty($username) || empty($Food) || empty($Amount) || empty($Cooking) || empty($Date)) {
+  if(empty($username) || empty($Drink) || empty($Volume) || empty($Alcohol) || empty($Date)) {
 	  header("Location: ../waterregister.php?register=empty");
 	  exit();
 	} else {
-			if (!preg_match("/^[a-zA-Z]*$/", $username   ) || !preg_match("/^[a-zA-Z]*$/", $Food) || !preg_match("/^[a-zA-Z]*$/", $Cooking) {
-				header("Location: ../waterregister.php?register=invalid");
+			if (!preg_match("/^[a-zA-Z]*$/", $username) || !preg_match("/^[a-zA-Z]*$/", $Drink) || !preg_match("/^[a-zA-Z]*$/", $Volume)) {
+            header("Location: ../waterregister.php?register=invalid");
 		    exit();
 		  } else {
-			  $sql = "SELECT * FROM food WHERE username='$username'";
+			  $sql = "SELECT * FROM drink WHERE username='$username'";
 			  $result = mysqli_query($conn, $sql);
 			  $resultCheck = mysqli_num_rows($result);
 			
@@ -26,16 +26,15 @@ if (isset($_POST['food'])) {
 				  header("Location: ../waterregister.php?register=usertaken");
 				  exit();
 			  } else {
-                  $sql = "INSERT INTO food (username, Food, Amount, Cooking, Date) VALUES ('$username', '$Food', '$Amount', '$Cooking', '$Date');";
+                  $sql = "INSERT INTO drink (username, Drink, Volume, Volume, Date) VALUES ('$username', '$Drink', '$Volume', '$Volume', '$Date');";
                   mysqli_query($conn, $sql);
 				  header("Register updated!", TRUE, 200);
 				  exit();
                 }
 			}
 		}
-	}
-
-
+    
 } else {
 		header("Location: ../waterregister.php"); 
 		exit();
+}

@@ -14,7 +14,7 @@ if (isset($_POST['food'])) {
 	  header("Location: ../waterregister.php?register=empty");
 	  exit();
 	} else {
-			if (!preg_match("/^[a-zA-Z]*$/", $username   ) || !preg_match("/^[a-zA-Z]*$/", $Food) || !preg_match("/^[a-zA-Z]*$/", $Cooking) {
+			if (!preg_match("/^[a-zA-Z]*$/", $username) || !preg_match("/^[a-zA-Z]*$/", $Food) || !preg_match("/[^0-9]/", $Amount) || !preg_match("/^[a-zA-Z]*$/", $Cooking)) {
 				header("Location: ../waterregister.php?register=invalid");
 		    exit();
 		  } else {
@@ -33,8 +33,6 @@ if (isset($_POST['food'])) {
                 }
 			}
 		}
-	}
-
 
 } else {
 		header("Location: ../waterregister.php"); 

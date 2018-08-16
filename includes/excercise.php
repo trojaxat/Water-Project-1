@@ -1,24 +1,25 @@
 <?php
 
-if (isset($_POST['food'])) {
+if (isset($_POST['excercise'])) {
 	
   include_once 'dblogin.php';
 	
 	$username = mysqli_real_escape_string($conn, $_POST['username']);
-    $Food = mysqli_real_escape_string($conn, $_POST['Food']);
-    $Amount = mysqli_real_escape_string($conn, $_POST['Amount']);
-	$Cooking = mysqli_real_escape_string($conn, $_POST['Cooking']);
+    $Excercise = mysqli_real_escape_string($conn, $_POST['Excercise']);
+    $Duration = mysqli_real_escape_string($conn, $_POST['Duration']);
+	$Intensity = mysqli_real_escape_string($conn, $_POST['Intensity']);
+	$Outside = mysqli_real_escape_string($conn, $_POST['Outside']);
     $Date = mysqli_real_escape_string($conn, $_POST['Date']);
     
-  if(empty($username) || empty($Food) || empty($Amount) || empty($Cooking) || empty($Date)) {
+  if(empty($username) || empty($Excercise) || empty($Duration) || empty($Intensity) || empty($Outside) ||empty($Date)) {
 	  header("Location: ../waterregister.php?register=empty");
 	  exit();
 	} else {
-			if (!preg_match("/^[a-zA-Z]*$/", $username   ) || !preg_match("/^[a-zA-Z]*$/", $Food) || !preg_match("/^[a-zA-Z]*$/", $Cooking) {
-				header("Location: ../waterregister.php?register=invalid");
+			if (!preg_match("/^[a-zA-Z]*$/", $username) || !preg_match("/^[a-zA-Z]*$/", $Excercise) || !preg_match("/[^0-9]/", $Duration) || !preg_match("/[^0-9]/", $Intensity) || !preg_match("/^[a-zA-Z]*$/", $Outside)){
+            header("Location: ../waterregister.php?register=invalid");
 		    exit();
 		  } else {
-			  $sql = "SELECT * FROM food WHERE username='$username'";
+			  $sql = "SELECT * FROM excercise WHERE username='$username'";
 			  $result = mysqli_query($conn, $sql);
 			  $resultCheck = mysqli_num_rows($result);
 			
@@ -26,16 +27,16 @@ if (isset($_POST['food'])) {
 				  header("Location: ../waterregister.php?register=usertaken");
 				  exit();
 			  } else {
-                  $sql = "INSERT INTO food (username, Food, Amount, Cooking, Date) VALUES ('$username', '$Food', '$Amount', '$Cooking', '$Date');";
+                  $sql = "INSERT INTO excercise (username, Excercise, Duration, Intensity, Outside, Date) VALUES ('$username', '$Excercise', '$Duration', '$Intensity', '$Outside', '$Date');";
                   mysqli_query($conn, $sql);
 				  header("Register updated!", TRUE, 200);
 				  exit();
                 }
 			}
 		}
-	}
 
 
 } else {
 		header("Location: ../waterregister.php"); 
 		exit();
+}
