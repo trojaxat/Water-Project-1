@@ -237,7 +237,11 @@ function addExcercise(){
           });
 }
     
-
+function checkRegister(){
+    $.ajax.fail(function(jqXHR) {
+    alert(jqXHR.statusText);
+})
+}
 
 function addDrinkItem(){
     var link = "<p> Type Volume Alcohol </p><br>";    
@@ -278,11 +282,7 @@ function registerToggle(){
     }
 }
 
-function checkRegister(){
-    $.ajax.fail(function(jqXHR) {
-    alert(jqXHR.statusText);
-})
-}
+
 
 ////////////////Start////////////////////////////    to seperate second half
 function init2(){

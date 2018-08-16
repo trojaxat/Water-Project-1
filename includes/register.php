@@ -38,7 +38,6 @@ if (isset($_POST['register'])) {
                   $sql = "INSERT INTO web_members (name, last, username, email, password, day, month, year, gender) VALUES ('$name', '$last', '$username', '$email', '$hashedPwd', '$day', '$month', '$year', '$gender');";
                   mysqli_query($conn, $sql);
 				  header("Register updated!", TRUE, 200);
-                  checkRegister();
                   header("Location: ../waterlogged.html"); 
 				  exit();
                 }

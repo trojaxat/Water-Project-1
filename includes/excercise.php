@@ -39,4 +39,3 @@ if (isset($_POST['food'])) {
 } else {
 		header("Location: ../waterregister.php"); 
 		exit();
-}

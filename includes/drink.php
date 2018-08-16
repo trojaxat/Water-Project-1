@@ -18,7 +18,7 @@ if (isset($_POST['food'])) {
 				header("Location: ../waterregister.php?register=invalid");
 		    exit();
 		  } else {
-			  $sql = "SELECT * FROM web_members WHERE username='$username'";
+			  $sql = "SELECT * FROM food WHERE username='$username'";
 			  $result = mysqli_query($conn, $sql);
 			  $resultCheck = mysqli_num_rows($result);
 			
@@ -26,10 +26,9 @@ if (isset($_POST['food'])) {
 				  header("Location: ../waterregister.php?register=usertaken");
 				  exit();
 			  } else {
-                  $sql = "INSERT INTO web_members (username, Food, Amount, Cooking, Date) VALUES ('$username', '$Food', '$Amount', '$Cooking', '$Date');";
+                  $sql = "INSERT INTO food (username, Food, Amount, Cooking, Date) VALUES ('$username', '$Food', '$Amount', '$Cooking', '$Date');";
                   mysqli_query($conn, $sql);
 				  header("Register updated!", TRUE, 200);
-                  checkRegister();
 				  exit();
                 }
 			}
@@ -40,4 +39,3 @@ if (isset($_POST['food'])) {
 } else {
 		header("Location: ../waterregister.php"); 
 		exit();
-}
