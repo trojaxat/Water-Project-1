@@ -1,10 +1,14 @@
 /////////////Start//////////////
 var base = 0;
-//init();
+var loggedInUser = [];
+init();
+
 
 function init() {
-    baseQuestions();
-    html();
+    eventListeners();
+    checkedOption();
+    //baseQuestions();
+    //html();
 }
 
 function html() {
@@ -237,10 +241,30 @@ function addExcercise(){
           });
 }
     
-function checkRegister(){
-    $.ajax.fail(function(jqXHR) {
-    alert(jqXHR.statusText);
-})
+function eventListeners() {
+	document.getElementById('calculateWater').addEventListener('click', function (event) {
+        // event.preventDefault();  later I want to change this, so that it is sent with the form.
+        // using jquery https://api.jquery.com/serialize/ can send the form data from within javascript
+        $.ajax({
+	        method: 'POST',
+	        url: 'includes/ajaxTest.php',
+        }).done(function (response) {
+            console.log(response);
+
+            document.getElementById('id03').innerHTML = response;
+        });
+	});
+    
+    document.getElementById('loginButton').addEventListener('click', function (event) {
+        $.ajax({
+	        method: 'POST',
+	        url: 'includes/checkLogin.php',
+        }).done(function (response) {
+            console.log(response);
+
+            document.getElementById('id03').innerHTML = response;
+        });
+	});
 }
 
 function addDrinkItem(){
@@ -281,15 +305,3 @@ function registerToggle(){
         x.value = "Login";
     }
 }
-
-
-
-////////////////Start////////////////////////////    to seperate second half
-function init2(){
-    var result = excerciseWaterValue();
-    checkedOption();
-    //document.getElementById("id03").innerHTML = "<p>Due to " + excerciseListToday[0].excercise + " you need to drink " + result + " extra litres of water today.</p>";// change this to scroll through sporting activities and say how much more water due to sport//
-}
-
-init2();
-

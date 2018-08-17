@@ -37,7 +37,6 @@ if (isset($_POST['register'])) {
                   $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
                   $sql = "INSERT INTO web_members (name, last, username, email, password, day, month, year, gender) VALUES ('$name', '$last', '$username', '$email', '$hashedPwd', '$day', '$month', '$year', '$gender');";
                   mysqli_query($conn, $sql);
-
                   header("Location: ../waterlogged.html"); 
 				  exit();
                 }
@@ -50,3 +49,5 @@ if (isset($_POST['register'])) {
 		header("Location: ../waterregister.php"); 
 		exit();
 }
+
+?>

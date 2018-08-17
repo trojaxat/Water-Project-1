@@ -8,3 +8,5 @@ $dbName="water_login"; // Database name
 
 // Connect to server and select databse.
 $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+
+?>

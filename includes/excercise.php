@@ -40,3 +40,5 @@ if (isset($_POST['excercise'])) {
 		header("Location: ../waterregister.php"); 
 		exit();
 }
+
+?>

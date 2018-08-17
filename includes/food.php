@@ -4,19 +4,19 @@ if (isset($_POST['food'])) {
 	
   include_once 'dblogin.php';
 	
-	$username = mysqli_real_escape_string($conn, $_POST['username']);
+	$username = "dan";
     $Food = mysqli_real_escape_string($conn, $_POST['Food']);
     $Amount = mysqli_real_escape_string($conn, $_POST['Amount']);
 	$Cooking = mysqli_real_escape_string($conn, $_POST['Cooking']);
-    $Date = mysqli_real_escape_string($conn, $_POST['Date']);
+    $Date = date("Y-m-d");       
     
-  if(empty($username) || empty($Food) || empty($Amount) || empty($Cooking) || empty($Date)) {
+  if(empty($Food) || empty($Amount) || empty($Cooking)) {
 	  header("Location: ../waterregister.php?register=empty");
 	  exit();
 	} else {
-			if (!preg_match("/^[a-zA-Z]*$/", $username) || !preg_match("/^[a-zA-Z]*$/", $Food) || !preg_match("/[^0-9]/", $Amount) || !preg_match("/^[a-zA-Z]*$/", $Cooking)) {
-				header("Location: ../waterregister.php?register=invalid");
-		    exit();
+			if (!preg_match("/^[a-zA-Z]*$/", $Food) || !preg_match("/[^0-9]/", $Amount) || !preg_match("/^[a-zA-Z]*$/", $Cooking)) {
+                header("Location: ../includes/food.php?register=invalid");
+		        exit();
 		  } else {
 			  $sql = "SELECT * FROM food WHERE username='$username'";
 			  $result = mysqli_query($conn, $sql);
@@ -38,3 +38,5 @@ if (isset($_POST['food'])) {
 		header("Location: ../waterregister.php"); 
 		exit();
 }
+
+?>

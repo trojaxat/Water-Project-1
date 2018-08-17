@@ -11,6 +11,9 @@
         <!-- jquery link -->
         <script src="jquery-3.3.1.min.js"></script>
         
+        <!-- bundle link -->
+        <script src="bundle.js"></script>
+        
         <link rel="stylesheet" href="water.css">
         <title>Water Project</title>
             <h1 id="id00"></h1>
@@ -41,7 +44,7 @@
         Food<input type = "text" id="Food" name = "Food" placeholder="Bread, Cheese, Apple.."> <br>
         Amount (grams)<input type = "text" id="Amount" name = "Amount" placeholder="200"> <br>
         Cooking method<input type = "text" id="Cooking" name = "Cooking" placeholder="Raw, Boiled.."> <br>
-                    <input type ="submit" name="food" onClick = "addConsumableItem()" value = "Add Food"><br>
+                    <input id="foodButton" type ="submit" name="food" onClick = "addConsumableItem()" value = "Add Food"><br>
                 </form>
             </div>
                     
@@ -116,7 +119,7 @@
                           <label for="loginkeeping">Keep me logged in</label>
                      </p>
                      <p class="login button"> 
-                          <input name="login" type="submit" value="Login" /> 
+                          <input name="loginButton" type="submit" value="Login" /> 
                      </p>
                 </form>
             </div>
@@ -240,12 +243,11 @@
     </script>
             
             <div class="row align-items-end">
-                <h3 id="id03">  <input type ="submit" id="Calculate" onClick = "calculate()" value = "Water!"><br><br></h3>
+                <h3 id="id03"> <input type ="submit" id="waterCalculate" value = "Water!"><br><br></h3>
             </div>
 </div>
             <body></body>
     <script src="water.js"></script>
-    <script src="bundle.js"></script>
 </html>
     
     
