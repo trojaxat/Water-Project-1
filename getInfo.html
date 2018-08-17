@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<button id="getInfoButton">Get Info</button>
+
+<p id="serverResponse">-- None yet --</p>
+
+
+<form id="login">
+    <input type="text" placeholder="Username" />
+    <input type="password" placeholder="Password" />
+
+    <input type="submit" value="Login" />
+</form>
+
+<script src="jquery-3.3.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	document.getElementById('getInfoButton').addEventListener('click', function (event) {
+        $.ajax({
+	        method: 'POST',
+	        url: 'includes/ajaxTest.php',
+        }).done(function (response) {
+            console.log(response);
+
+            document.getElementById('serverResponse').innerHTML = response;
+        });
+	});
+</script>
+</body>
+</html>
