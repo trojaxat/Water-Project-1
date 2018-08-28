@@ -242,7 +242,7 @@ function addExcercise(){
 }
     
 function eventListeners() {
-	document.getElementById('calculateWater').addEventListener('click', function (event) {
+	document.getElementById('returnFood').addEventListener('click', function (event) {
         // event.preventDefault();  later I want to change this, so that it is sent with the form.
         // using jquery https://api.jquery.com/serialize/ can send the form data from within javascript
         $.ajax({
@@ -251,20 +251,30 @@ function eventListeners() {
         }).done(function (response) {
             console.log(response);
 
-            document.getElementById('id03').innerHTML = response;
+            document.getElementById('graphFood').innerHTML = response;
+            var obj = JSON.parse(response);
+            console.log(obj);
         });
 	});
     
     document.getElementById('loginButton').addEventListener('click', function (event) {
-        $.ajax({
-	        method: 'POST',
-	        url: 'includes/checkLogin.php',
-        }).done(function (response) {
-            console.log(response);
+        event.preventDefault();
+        
+        var username = document.getElementById('loginUsername').value;
+        var password = document.getElementById('loginPassword').value;
+        var values = {username:username, password:password}
+        
+            $.ajax({
+                data: values,
+                method: 'POST',
+                url: "includes/checkLogin.php",
+            }).done(function (response) {
+                console.log(response);
 
-            document.getElementById('id03').innerHTML = response;
+                document.getElementById('id07').innerHTML = response;
+            });
         });
-	});
+    
 }
 
 function addDrinkItem(){

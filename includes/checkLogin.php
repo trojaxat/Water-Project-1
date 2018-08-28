@@ -9,37 +9,33 @@ if (isset($_POST['login'])) {
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     
     // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($dbServername, $dbUsername, $dbPassword, $dbName);
 
     // Check connection
     if ($conn->connect_error) {
         echo("Connection failed: " . $conn->connect_error);
-        header("Location: ../waterregister.php?login=connectionerror");
 	    exit();
     } else {
         if(empty($username) || empty($password)) {
-	       header("Location: ../waterregister.php?login=empty");
-	       exit();
+            echo"User name or password empty";
+            exit();
         } else {
-            $stmt = $conn->prepare("SELECT username FROM web_members where username = '$username' and password = '$password'");
-            $stmt->bind_param("ss", $username, $password);
+            //$stmt = $conn->prepare("SELECT * FROM web_members where username='$username' and password='$password'");
+            //$stmt->bind_param("ss", $username, $password);
+             $sql = "SELECT * FROM web_members where username='$username' and password='$password'";
+             $result = $conn->query($sql);
 
-            if ($result->num_rows > 0) {
-            // output data of each row
-            while($row = $result->fetch_assoc()) {
-                echo "username: " . $row["username"] . "Password: " . $row["Password"] ."<br>";
-        }
-
-        } else {
-        echo "0 results";
-                }
+            if (mysqli_num_rows($result) == 1) {
+                echo"Log in successful";
+            } else {
+                echo"Incorrect user name or password";
+                   }
             
+                }
             }
-        }
-    
             
 } else {
-		header("Location: ../waterlogged.html"); 
+        echo("Variable error");
 		exit();
 }
         

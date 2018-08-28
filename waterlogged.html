@@ -101,7 +101,7 @@
                      <input class="registerbutton" id="registerToggle" type="submit" onClick = "registerToggle()" value="Register">
             </label>
             <div id="login" style="display:blocked">
-                <form  id="frmLogin" action="includes/checklogin.php" autocomplete="on">
+                <form id="frmLogin" name="login" autocomplete="on">
                      <h5 id="id07"> Register Successful</h5>
                        <h6 id="id08">Please log in to continue:</h6> 
                     <p>
@@ -112,14 +112,14 @@
                      </p>
                      <p> 
                           <label for="password" class="youpasswd" data-icon="p">Password:</label>
-                          <input id="loginPassword" name="password" required="required" type="password" placeholder="Password" /> 
+                          <input id="loginPassword" autocomplete="on" name="password" required="required" type="password" placeholder="Password" /> 
                      </p>
-                     <p class="keeplogin"> 
+                     <!--p class="keeplogin"> 
                           <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
                           <label for="loginkeeping">Keep me logged in</label>
-                     </p>
+                     </p-->
                      <p class="login button"> 
-                          <input name="loginButton" type="submit" value="Login" /> 
+                          <input name="loginButton" id="loginButton" type="submit" value="Login" /> 
                      </p>
                 </form>
             </div>
@@ -135,7 +135,7 @@
                      <label for="username" class="uname" data-icon="u">Username:</label>
                      <input id="username" name="username" required="required" type="text" placeholder="Username" />
                      <label for="password" class="password" data-icon="p">Password:</label>
-                     <input id="password" name="password" required="required" type="password" placeholder="Password"/>
+                     <input id="password" autocomplete="on" name="password" required="required" type="password" placeholder="Password"/>
                     <!-- issue with password confirm maybe-->
                      <!-- label for="passwordConfirm" class="password" data-icon="p">Confirm Password:</label>
                      <input id="passwordConfirm" name="passwordsignup_confirm" required="required" type="password" placeholder="Password"/-->
@@ -224,26 +224,8 @@
         </div>
     </div>
             
-    <script type="text/javascript">
-        function testPass() {
-            var username = document.getElementById("uname").value;
-            var passwrd = document.getElementById("passwd").value;
-            var creds = "uname="+username+"&passwd="+passwrd;
-            var ajx = new XMLHttpRequest();
-            ajx.onreadystatechagne = function () {
-                if (ajx.readyState == 4 && ajx.status == 200) {
-                    document.getElementById("message").innerHTML = ajx.responseText;
-                }
-            };
-            ajx.open("POST", "authenticate.php", true);
-            ajx.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            ajx.send(creds);
-            //document.getElementById("message").innerHTML = creds;
-        }
-    </script>
-            
             <div class="row align-items-end">
-                <h3 id="id03"> <input type ="submit" id="waterCalculate" value = "Water!"><br><br></h3>
+                <h3 id="id03"> <input type ="submit" id="returnFood" value = "Refresh"><br><br></h3>
             </div>
 </div>
             <body></body>
