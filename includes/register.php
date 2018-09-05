@@ -2,7 +2,7 @@
 
 if (isset($_POST['register'])) {
 	
-  include_once 'dblogin.php';
+  include_once 'adblogin.php';
 	
 	$name = mysqli_real_escape_string($conn, $_POST['name']);
 	$last = mysqli_real_escape_string($conn, $_POST['last']);

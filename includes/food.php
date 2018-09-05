@@ -1,42 +1,29 @@
 <?php
+	
+  include_once 'adblogin.php';
 
-if (isset($_POST['food'])) {
+  $conn = new mysqli($dbServername, $dbUsername, $dbPassword, $dbName);
 	
-  include_once 'dblogin.php';
-	
-	$username = "dan";
-    $Food = mysqli_real_escape_string($conn, $_POST['Food']);
-    $Amount = mysqli_real_escape_string($conn, $_POST['Amount']);
-	$Cooking = mysqli_real_escape_string($conn, $_POST['Cooking']);
-    $Date = date("Y-m-d");       
+	$username = mysqli_real_escape_string($conn, $_POST['username']);
+    $food = mysqli_real_escape_string($conn, $_POST['food']);
+    $amount = mysqli_real_escape_string($conn, $_POST['amount']);
+	$cooking = mysqli_real_escape_string($conn, $_POST['cooking']);
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
     
-  if(empty($Food) || empty($Amount) || empty($Cooking)) {
-	  header("Location: ../waterregister.php?register=empty");
+  if(empty($username) || empty($food) || empty($amount) || empty($cooking) || empty($date)) {
+	  echo("One of the fields is empty");
 	  exit();
 	} else {
-			if (!preg_match("/^[a-zA-Z]*$/", $Food) || !preg_match("/[^0-9]/", $Amount) || !preg_match("/^[a-zA-Z]*$/", $Cooking)) {
-                header("Location: ../includes/food.php?register=invalid");
-		        exit();
-		  } else {
-			  $sql = "SELECT * FROM food WHERE username='$username'";
-			  $result = mysqli_query($conn, $sql);
-			  $resultCheck = mysqli_num_rows($result);
-			
-			  if ($resultCheck > 0) {
-				  header("Location: ../waterregister.php?register=usertaken");
-				  exit();
-			  } else {
-                  $sql = "INSERT INTO food (username, Food, Amount, Cooking, Date) VALUES ('$username', '$Food', '$Amount', '$Cooking', '$Date');";
-                  mysqli_query($conn, $sql);
-				  header("Register updated!", TRUE, 200);
-				  exit();
-                }
-			}
-		}
-
-} else {
-		header("Location: ../waterregister.php"); 
-		exit();
-}
-
+			if (!preg_match("/^[a-zA-Z0-9]*$/", $food) || !preg_match("/[0-9]/", $amount) || !preg_match("/[A-Za-z0-9]+/", $cooking)) {
+	        echo("Inappropriate Input");
+		    exit();
+        } else {
+              $sql = "INSERT INTO food (username, food, amount, cooking, date) VALUES ('$username', '$food', '$amount', '$cooking', '$date');";
+              mysqli_query($conn, $sql);
+              echo("Food item added");
+              exit();
+            }
+        }
+    
 ?>
+

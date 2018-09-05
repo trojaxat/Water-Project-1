@@ -1,11 +1,9 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "water_login";
+
+  include_once 'adblogin.php';
 
     // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($dbServername, $dbUsername, $dbPassword, $dbName);
 
     // Check connection
     if ($conn->connect_error) {

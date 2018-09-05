@@ -1,42 +1,29 @@
 <?php
-
-if (isset($_POST['drink'])) {
 	
-  include_once 'dblogin.php';
+  include_once 'adblogin.php';
+
+  $conn = new mysqli($dbServername, $dbUsername, $dbPassword, $dbName);
 	
 	$username = mysqli_real_escape_string($conn, $_POST['username']);
-    $Drink = mysqli_real_escape_string($conn, $_POST['Drink']);
-    $Volulme = mysqli_real_escape_string($conn, $_POST['Volume']);
-	$Alcohol = mysqli_real_escape_string($conn, $_POST['Alcohol']);
-    $Date = mysqli_real_escape_string($conn, $_POST['Date']);
+    $drink = mysqli_real_escape_string($conn, $_POST['drink']);
+    $volume = mysqli_real_escape_string($conn, $_POST['volume']);
+	$alcohol = mysqli_real_escape_string($conn, $_POST['alcohol']);
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
     
-  if(empty($username) || empty($Drink) || empty($Volume) || empty($Alcohol) || empty($Date)) {
-	  header("Location: ../waterregister.php?register=empty");
+  if(empty($username) || empty($drink) || empty($volume) || empty($alcohol) || empty($date)) {
+	  echo("One of the fields is empty");
 	  exit();
 	} else {
-			if (!preg_match("/^[a-zA-Z]*$/", $username) || !preg_match("/^[a-zA-Z]*$/", $Drink) || !preg_match("/^[a-zA-Z]*$/", $Volume)) {
-            header("Location: ../waterregister.php?register=invalid");
+			if (!preg_match("/^[a-zA-Z0-9]*$/", $drink) || !preg_match("/[0-9]/", $volume) || !preg_match("/[A-Za-z0-9]+/", $alcohol)) {
+	        echo("Inappropriate Input");
 		    exit();
-		  } else {
-			  $sql = "SELECT * FROM drink WHERE username='$username'";
-			  $result = mysqli_query($conn, $sql);
-			  $resultCheck = mysqli_num_rows($result);
-			
-			  if ($resultCheck > 0) {
-				  header("Location: ../waterregister.php?register=usertaken");
-				  exit();
-			  } else {
-                  $sql = "INSERT INTO drink (username, Drink, Volume, Volume, Date) VALUES ('$username', '$Drink', '$Volume', '$Volume', '$Date');";
-                  mysqli_query($conn, $sql);
-				  header("Register updated!", TRUE, 200);
-				  exit();
-                }
-			}
-		}
+        } else {
+              $sql = "INSERT INTO drink (username, drink, volume, alcohol, date) VALUES ('$username', '$drink', '$volume', '$alcohol', '$date');";
+              mysqli_query($conn, $sql);
+              echo("Drink item added");
+              exit();
+            }
+        }
     
-} else {
-		header("Location: ../waterregister.php"); 
-		exit();
-}
-
 ?>
+

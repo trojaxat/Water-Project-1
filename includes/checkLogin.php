@@ -1,8 +1,6 @@
 <?php
 
-if (isset($_POST['login'])) {
-	
-  include_once 'dblogin.php';
+  include_once 'adblogin.php';
 
 
 	$username = mysqli_real_escape_string($conn, $_POST['username']);
@@ -33,10 +31,5 @@ if (isset($_POST['login'])) {
             
                 }
             }
-            
-} else {
-        echo("Variable error");
-		exit();
-}
-        
+
 ?>

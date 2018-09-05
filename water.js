@@ -1,9 +1,9 @@
 /////////////Start//////////////
 var base = 0;
-var loggedInUser = [];
+var loggedInUser = ["dan","dan"];
 init();
 
-
+   
 function init() {
     eventListeners();
     checkedOption();
@@ -27,7 +27,7 @@ function baseQuestions() {
     gender = prompt("Hello " + name + ", are you male or female? m/f");
     weight = prompt("How much do you weigh in kilograms?");
     height = prompt("How tall are you in cm?");
-    fitness = prompt("How many hours of sport do you generally do a week?");
+    fitness = prompt("How many hours of sport do you generally do a week?");   
     disease = prompt("Do you have any diseases that you take medicine regularly for? y/n");
     
     function person(name, gender, weight, height, fitness, disease) {
@@ -100,24 +100,24 @@ function consumableItem(food, amount, cooking, drink, volume, alcohol, water, su
 }
 
 function addConsumableItem(){
-    var food = document.getElementById('Food').value;
-    var amount = document.getElementById('Amount').value;
-    var cooking = document.getElementById('Cooking').value;
-    var drink = document.getElementById('Drink').value;  /////// when adding drink option, it puts values into food amount cooking
-    var volume = document.getElementById('Volume').value;
-    var alcohol = document.getElementById('Alcohol').value;
+    var food = document.getElementById('food').value;
+    var amount = document.getElementById('amount').value;
+    var cooking = document.getElementById('cooking').value;
+    var drink = document.getElementById('drink').value;  /////// when adding drink option, it puts values into food amount cooking
+    var volume = document.getElementById('volume').value;
+    var alcohol = document.getElementById('alcohol').value;
 
     if (food !== null && food !== '' && amount !== null && amount !== '' && cooking !== null && cooking !== ''){
             foodListToday.push(consumableItem(food, amount, cooking));
-            document.getElementById("frm1").reset();
+            document.getElementById("addFood").reset();
             addFoodItem();
     } else if (drink !== null && drink !== '' && volume !== null && volume !== '' && alcohol !== null && alcohol !== ''){
             drinkListToday.push(consumableItem(0,0,0, drink, volume, alcohol));
-            document.getElementById("frm3").reset();
+            document.getElementById("addExc").reset();
             addDrinkItem();
     } else {
-            document.getElementById("frm1").reset();
-            document.getElementById("frm3").reset();
+            document.getElementById("addFood").reset();
+            document.getElementById("addExc").reset();
     }
 }
 
@@ -144,9 +144,9 @@ function addExcerciseItem(){
         if (excercise !== null && excercise !== '' && duration !== null && duration !== '' && intensity !== null && intensity !== '' && outside !== null && outside !== ''){
             excerciseListToday.push(excerciseItem(excercise, duration, intensity, outside));
             addExcercise();
-            document.getElementById("frm2").reset();
+            document.getElementById("addExc").reset();
     } else {
-            document.getElementById("frm2").reset();
+            document.getElementById("addExc").reset();
     }
 
 }
@@ -270,8 +270,61 @@ function eventListeners() {
                 url: "includes/checkLogin.php",
             }).done(function (response) {
                 console.log(response);
-
+                loggedInUser.push(username);  // this is added even if the login was unsuccessful
+                loggedInUser.push(password);  // needs to be hashed or hidden  
                 document.getElementById('id07').innerHTML = response;
+            });
+        });
+    
+    document.getElementById('drinkBtn').addEventListener('click', function (event) {
+        event.preventDefault();
+        
+        var username = loggedInUser[0];
+        var drink = document.getElementById('drink').value;
+        var volume = document.getElementById('volume').value;
+        var alcohol = document.getElementById('alcohol').value;
+        var date = new Date().toISOString().slice(0, 10);
+
+        
+        var drinkValues = {username:username, drink:drink, volume:volume, alcohol:alcohol, date:date}
+        
+            $.ajax({
+                data: drinkValues,
+                method: 'POST',
+                url: "includes/drink.php",
+                //contentType:'application/json',
+                //data: JSON.stringify(drinkValues),
+                //dataType:'json',
+            }).done(function (response) {
+                console.log(response);
+                // use json to add elements to Food etc
+                addConsumableItem();
+            });
+        });
+    
+    document.getElementById('foodBtn').addEventListener('click', function (event) {
+        event.preventDefault();
+        
+        var username = loggedInUser[0];
+        var food = document.getElementById('food').value;
+        var amount = document.getElementById('amount').value;
+        var cooking = document.getElementById('cooking').value;
+        var date = new Date().toISOString().slice(0, 10);
+
+        
+        var drinkValues = {username:username, food:food, amount:amount, cooking:cooking, date:date}
+        
+            $.ajax({
+                data: drinkValues,
+                method: 'POST',
+                url: "includes/food.php",
+                //contentType:'application/json',
+                //data: JSON.stringify(drinkValues),
+                //dataType:'json',
+            }).done(function (response) {
+                console.log(response);
+                // use json to add elements to Food etc
+                addConsumableItem();
             });
         });
     
@@ -280,7 +333,7 @@ function eventListeners() {
 function addDrinkItem(){
     var link = "<p> Type Volume Alcohol </p><br>";    
     drinkListToday.forEach(function(element){
-        link = link + "<p>" + element.drink + " " + element.volume + " milliliters and " + element.alcohol + "</p>"; 
+        link = link + "<p>" + element.drink + " " + element.volume + " ml and " + element.alcohol + "% </p>"; 
     });
     document.getElementById("graphDrink").innerHTML = link;   
 }

@@ -90,7 +90,7 @@
     border-radius: 5px;
 }
 
-#Excercise, #Duration, #Intensity, #Outside, #Drink, #Volume, #Alcohol, #Food, #Amount, #Cooking {
+#excercise, #duration, #intensity, #outside, #drink, #volume, #alcohol, #food, #amount, #cooking {
     font-size: 12px;
     padding: 1em;
     overflow: hidden;
