@@ -14,7 +14,7 @@
 	  echo("One of the fields is empty");
 	  exit();
 	} else {
-			if (!preg_match("/^[a-zA-Z0-9]*$/", $drink) || !preg_match("/[0-9]/", $volume) || !preg_match("/[A-Za-z0-9]+/", $alcohol)) {
+			if (!preg_match("/^[a-zA-Z0-9]*$/", $drink) || !preg_match("/^[0-9]*$/", $volume) || !preg_match("/^[a-zA-Z0-9]*$/", $alcohol)) {
 	        echo("Inappropriate Input");
 		    exit();
         } else {

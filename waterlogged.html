@@ -51,7 +51,7 @@
 
             <div id="form2" style="display:none"> 
                 <form id="addExc" name="addExc" autocomplete="on">
-        Excercise type <input type = "text" id="excercise" name = "Excerise" placeholder="Climbing, Running, etc.."> <br>
+        Excercise type <input type = "text" id="excercise" name = "Excercise" placeholder="Climbing, Running, etc.."> <br>
         Duration (Mins)<input type = "text" id="duration" name = "Duration" placeholder="15"> <br>
         Intensity <input type = "text" id="intensity" name = "Intensity" placeholder="1-5, 5 is the most"> <br>
         Outside or Inside? <input type = "text" id="outside" name = "Outside" placeholder="O or I"> <br>  
@@ -62,9 +62,9 @@
     
             <div id="form3" style="display:none" style="text-align:left">
                 <form id="addDrink" name="addDrink" autocomplete="on">
-        Drink <input type="text" id="drink" name="Drink" placeholder="Beer, Water, Coke.."> <br>
-        Amount (ml)<input type="text" id="volume" name="Volume" placeholder="100"> <br>
-        Alcohol? <input type="text" id="alcohol" name="Alcohol" placeholder="Percentage or N"> <br> 
+        Drink <input type="text" id="drink" name="Drink" required="required" placeholder="Beer, Water, Coke.."> <br>
+        Amount (ml)<input type="text" id="volume" name="Volume" required="required" placeholder="100"> <br>
+        Alcohol? <input type="text" id="alcohol" name="Alcohol" required="required" placeholder="Percentage or N"> <br> 
                     <input type="submit" name="drink" id="drinkBtn" value = "Add Drink">
                 </form>
                                         
@@ -129,18 +129,18 @@
             <form action="includes/register.php" autocomplete="on" method="POST"> 
                 <h1> Sign up </h1> 
                 <p> 
-                     <label for="name" class="name" data-icon="u">First Name:</label>
+                     <label for="name" class="name">First Name:</label>
                      <input type="text"id="name" name="name" required="required" type="text" placeholder="First" />
-                     <label for="last" class="lname" data-icon="u">Last Name:</label>
+                     <label for="last" class="lname">Last Name:</label>
                      <input id="last" name="last" required="required" type="text" placeholder="Last" />
-                     <label for="username" class="uname" data-icon="u">Username:</label>
+                     <label for="username" class="uname">Username:</label>
                      <input id="username" name="username" required="required" type="text" placeholder="Username" />
-                     <label for="password" class="password" data-icon="p">Password:</label>
+                     <label for="password" class="password">Password:</label>
                      <input id="password" autocomplete="on" name="password" required="required" type="password" placeholder="Password"/>
                     <!-- issue with password confirm maybe-->
                      <!-- label for="passwordConfirm" class="password" data-icon="p">Confirm Password:</label>
                      <input id="passwordConfirm" name="passwordsignup_confirm" required="required" type="password" placeholder="Password"/-->
-                     <label for="email" class="email" data-icon="e" >Email:</label>
+                     <label for="email" class="email">Email:</label>
                      <input id="email" name="email" required="required" type="text" placeholder="example@domain.com"/> 
                     <label>Date of Birth:</label>
                      <select name="month" onChange="changeDate(this.options[selectedIndex].value);">

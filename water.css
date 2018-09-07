@@ -1,4 +1,4 @@
-/**********************************************
+ /**********************************************
 *** Header
 **********************************************/
 
@@ -8,35 +8,8 @@
 *** Food Drink or Excercise
 **********************************************/
 
-
-#graphFood {
+#graphExcercise, #graphDrink, #graphFood {
     font-size: 14px;
-    border-left: 1px solid gray;
-    padding: 1em;
-    overflow: hidden;
-    color: blue;
-    height: 400px;
-    background-color: whitesmoke;
-    border: 2px solid gray;
-    border-radius: 5px;
-}
-
-#graphDrink {
-    font-size: 14px;
-    border-left: 1px solid gray;
-    padding: 1em;
-    overflow: hidden;
-    color: blue;
-    height: 400px;
-    bottom: auto;
-    background-color: whitesmoke;
-    border: 2px solid gray;
-    border-radius: 5px;
-}
-
-#graphExcercise {
-    border-radius: 5px;
-    font-size: 13px;
     border-left: 1px solid gray;
     padding: 1em;
     overflow: hidden;
@@ -62,7 +35,6 @@
     color: black;
     -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
     -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
-    box-shadow: 
 }
 
 #register {
@@ -95,6 +67,7 @@
     padding: 1em;
     overflow: hidden;
     color: black;
+    border-radius: 5px;
 } 
 
 input[type='radio'], #form0 {

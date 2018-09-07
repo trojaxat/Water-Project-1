@@ -113,11 +113,11 @@ function addConsumableItem(){
             addFoodItem();
     } else if (drink !== null && drink !== '' && volume !== null && volume !== '' && alcohol !== null && alcohol !== ''){
             drinkListToday.push(consumableItem(0,0,0, drink, volume, alcohol));
-            document.getElementById("addExc").reset();
+            document.getElementById("addDrink").reset();
             addDrinkItem();
     } else {
             document.getElementById("addFood").reset();
-            document.getElementById("addExc").reset();
+            document.getElementById("addDrink").reset();
     }
 }
 
@@ -136,14 +136,14 @@ function excerciseItem(excercise, duration, intensity, outside) {
 
 }
 
-function addExcerciseItem(){
-    var excercise = document.getElementById('Excercise').value;
-    var duration = document.getElementById('Duration').value;
-    var intensity = document.getElementById('Intensity').value;
-    var outside = document.getElementById('Outside').value;
+function addExcercise(){
+    var excercise = document.getElementById('excercise').value;
+    var duration = document.getElementById('duration').value;
+    var intensity = document.getElementById('intensity').value;
+    var outside = document.getElementById('outside').value;
         if (excercise !== null && excercise !== '' && duration !== null && duration !== '' && intensity !== null && intensity !== '' && outside !== null && outside !== ''){
             excerciseListToday.push(excerciseItem(excercise, duration, intensity, outside));
-            addExcercise();
+            addExcerciseItem();
             document.getElementById("addExc").reset();
     } else {
             document.getElementById("addExc").reset();
@@ -168,7 +168,38 @@ function excerciseWaterValue(){
 
 
 
+//////////////Adding items to Website Graphs/////////////////////
+
+function addFoodItem(){
+    var link = "<p> Name Amount Cooked </p><br>";    
+    foodListToday.forEach(function(element){
+        link = link + "<p>" + element.food + " " + element.amount + " grams and " + element.cooking + "</p>"; 
+    });
+    document.getElementById("graphFood").innerHTML = link;
+}
+
+function addDrinkItem(){
+    var link = "<p> Type Volume Alcohol </p><br>";    
+    drinkListToday.forEach(function(element){
+        link = link + "<p>" + element.drink + " " + element.volume + " ml and " + element.alcohol + "% </p>"; 
+    });
+    document.getElementById("graphDrink").innerHTML = link;   
+}
+
+
+function addExcerciseItem(){
+    var link = "<p> Type Intensity Duration OI</p><br>";    
+        excerciseListToday.forEach(function(element){
+            link = link + "<p>" + element.excercise + " " + element.duration + " of " + element.intensity + " " + element.outside + "</p>"; 
+    });
+    document.getElementById("graphExcercise").innerHTML = link;
+}
+
+
+
+
 ///////////////// Water Values/////////////////
+
 function consumedWaterValue(){
     var food, amount, cooking, alcohol, water, sugar; 
         weather = 0;
@@ -199,47 +230,8 @@ function calculate(){
 
 
     
-//////////////UI interface//////////////////////
-function addFoodItem(){
-    var link = "<p> Name Amount Cooked </p><br>";    
-    foodListToday.forEach(function(element){
-        link = link + "<p>" + element.food + " " + element.amount + " grams and " + element.cooking + "</p>"; 
-    });
-    document.getElementById("graphFood").innerHTML = link;
-}
+//////////////Event listeners//////////////////////
 
-function addExcercise(){
-    var link = "<p> Type Intensity Duration OI</p><br>";    
-        excerciseListToday.forEach(function(element){
-            link = link + "<p>" + element.excercise + " " + element.duration + " of " + element.intensity + " " + element.outside + "</p>"; 
-    });
-    document.getElementById("graphExcercise").innerHTML = link;
-    
-        var newExc = excerciseListToday[excerciseListToday.length-1];
-        var exc = newExc.excercise;
-        var dur = newExc.duration;
-        var int = newExc.intensity;
-        var out = newExc.outside;
-    
-        var today = new Date();
-        today.setHours(0, 0, 0, 0);
-    
-        var post  = {Excercise: newExc.excercise, Duration:newExc.duration, Intensity:newExc.intensity, Outside:newExc.outside, Date:today };
-    
-        var mysql = require('mysql');
-
-        var con = mysql.createConnection({
-          host: "localhost:3306",
-          user: "dan",
-          password: "dan",
-          database: "water_login"
-        });
-
-          con.query("INSERT INTO excercise (username, Excercise, Amount, Intensity, Outside, Date) VALUES ?", [post], function (err, result, fields) {
-            if (err) throw err;
-            console.log(result);
-          });
-}
     
 function eventListeners() {
 	document.getElementById('returnFood').addEventListener('click', function (event) {
@@ -312,10 +304,10 @@ function eventListeners() {
         var date = new Date().toISOString().slice(0, 10);
 
         
-        var drinkValues = {username:username, food:food, amount:amount, cooking:cooking, date:date}
+        var foodValues = {username:username, food:food, amount:amount, cooking:cooking, date:date}
         
             $.ajax({
-                data: drinkValues,
+                data: foodValues,
                 method: 'POST',
                 url: "includes/food.php",
                 //contentType:'application/json',
@@ -328,17 +320,37 @@ function eventListeners() {
             });
         });
     
+    document.getElementById('excerciseBtn').addEventListener('click', function (event) {
+        event.preventDefault();
+        
+        var username = loggedInUser[0];
+        var excercise = document.getElementById('excercise').value;
+        var duration = document.getElementById('duration').value;
+        var intensity = document.getElementById('intensity').value;
+        var outside = document.getElementById('outside').value;
+        var date = new Date().toISOString().slice(0, 10);
+
+        
+        var excValues = {username:username, excercise:excercise, duration:duration, intensity:intensity, outside:outside, date:date}
+        
+            $.ajax({
+                data: excValues,
+                method: 'POST',
+                url: "includes/excercise.php",
+                //contentType:'application/json',
+                //data: JSON.stringify(drinkValues),
+                //dataType:'json',
+            }).done(function (response) {
+                console.log(response);
+                // use json to add elements to Food etc
+                addExcercise();
+            });
+        });
+    
 }
 
-function addDrinkItem(){
-    var link = "<p> Type Volume Alcohol </p><br>";    
-    drinkListToday.forEach(function(element){
-        link = link + "<p>" + element.drink + " " + element.volume + " ml and " + element.alcohol + "% </p>"; 
-    });
-    document.getElementById("graphDrink").innerHTML = link;   
-}
 
-function checkedOption(){  
+function checkedOption() {  
     if (document.getElementById("frm0Food").checked == true) { 
             document.getElementById("form1").style.display = "block";
             document.getElementById("form2").style.display = "none";
@@ -354,7 +366,7 @@ function checkedOption(){
     }
 }
 
-function registerToggle(){
+function registerToggle() {
     var z = document.getElementById("login");
     var y = document.getElementById("register");
     var x = document.getElementById("registerToggle")

@@ -1,44 +1,29 @@
 <?php
 
-if (isset($_POST['excercise'])) {
-	
   include_once 'adblogin.php';
+
+  $conn = new mysqli($dbServername, $dbUsername, $dbPassword, $dbName);
 	
 	$username = mysqli_real_escape_string($conn, $_POST['username']);
-    $Excercise = mysqli_real_escape_string($conn, $_POST['Excercise']);
-    $Duration = mysqli_real_escape_string($conn, $_POST['Duration']);
-	$Intensity = mysqli_real_escape_string($conn, $_POST['Intensity']);
-	$Outside = mysqli_real_escape_string($conn, $_POST['Outside']);
-    $Date = mysqli_real_escape_string($conn, $_POST['Date']);
+    $excercise = mysqli_real_escape_string($conn, $_POST['excercise']);
+    $intensity = mysqli_real_escape_string($conn, $_POST['intensity']);
+    $duration = mysqli_real_escape_string($conn, $_POST['duration']);
+	$outside = mysqli_real_escape_string($conn, $_POST['outside']);
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
     
-  if(empty($username) || empty($Excercise) || empty($Duration) || empty($Intensity) || empty($Outside) ||empty($Date)) {
-	  header("Location: ../waterregister.php?register=empty");
+  if(empty($username) || empty($excercise) || empty($intensity) || empty($duration) || empty($outside) || empty($date)) {
+	  echo("One of the fields is empty");
 	  exit();
 	} else {
-			if (!preg_match("/^[a-zA-Z]*$/", $username) || !preg_match("/^[a-zA-Z]*$/", $Excercise) || !preg_match("/[^0-9]/", $Duration) || !preg_match("/[^0-9]/", $Intensity) || !preg_match("/^[a-zA-Z]*$/", $Outside)){
-            header("Location: ../waterregister.php?register=invalid");
+			if (!preg_match("/^[a-zA-Z0-9]*$/", $excercise) || !preg_match("/^[0-9]*$/", $duration) || !preg_match("/^[0-9]*$/", $intensity) || !preg_match("/^[a-zA-Z0-9]*$/", $outside)) {
+	        echo("Inappropriate Input");
 		    exit();
-		  } else {
-			  $sql = "SELECT * FROM excercise WHERE username='$username'";
-			  $result = mysqli_query($conn, $sql);
-			  $resultCheck = mysqli_num_rows($result);
-			
-			  if ($resultCheck > 0) {
-				  header("Location: ../waterregister.php?register=usertaken");
-				  exit();
-			  } else {
-                  $sql = "INSERT INTO excercise (username, Excercise, Duration, Intensity, Outside, Date) VALUES ('$username', '$Excercise', '$Duration', '$Intensity', '$Outside', '$Date');";
-                  mysqli_query($conn, $sql);
-				  header("Register updated!", TRUE, 200);
-				  exit();
-                }
-			}
-		}
-
-
-} else {
-		header("Location: ../waterregister.php"); 
-		exit();
-}
-
+        } else {
+              $sql = "INSERT INTO excercise (username, excercise, duration, intensity, outside, date) VALUES ('$username', '$excercise', '$duration', '$intensity', '$outside', '$date');";
+              mysqli_query($conn, $sql);
+              echo("Excercise item added");
+              exit();
+            }
+        }
+    
 ?>

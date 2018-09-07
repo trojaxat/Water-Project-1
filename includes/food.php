@@ -14,7 +14,7 @@
 	  echo("One of the fields is empty");
 	  exit();
 	} else {
-			if (!preg_match("/^[a-zA-Z0-9]*$/", $food) || !preg_match("/[0-9]/", $amount) || !preg_match("/[A-Za-z0-9]+/", $cooking)) {
+			if (!preg_match("/^[a-zA-Z0-9]*$/", $food) || !preg_match("/^[0-9]*$/", $amount) || !preg_match("/^[a-zA-Z0-9]*$/", $cooking)) {
 	        echo("Inappropriate Input");
 		    exit();
         } else {
