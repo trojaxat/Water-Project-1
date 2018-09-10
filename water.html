@@ -11,6 +11,9 @@
         <!-- jquery link -->
         <script src="jquery-3.3.1.min.js"></script>
         
+        <!-- bundle link -->
+        <script src="bundle.js"></script>
+        
         <link rel="stylesheet" href="water.css">
         <title>Water Project</title>
             <h1 id="id00"></h1>
@@ -37,33 +40,34 @@
             </div>    
         
             <div id="form1" style="display:none">
-                <form id="frm1" action="includes/food.php" autocomplete="on" method="POST">
-        Food<input type = "text" id="Food" name = "Food" placeholder="Bread, Cheese, Apple.."> <br>
-        Amount (grams)<input type = "text" id="Amount" name = "Amount" placeholder="200"> <br>
-        Cooking method<input type = "text" id="Cooking" name = "Cooking" placeholder="Raw, Boiled.."> <br>
-                    <input type ="submit" name="food" onClick = "addConsumableItem()" value = "Add Food"><br>
+                <form id="addFood" name="addFood" autocomplete="on">
+        Food<input type = "text" id="food" name = "food" placeholder="Bread, Cheese, Apple.."> <br>
+        Amount (grams)<input type = "text" id="amount" name = "Amount" placeholder="200"> <br>
+        Cooking method<input type = "text" id="cooking" name = "Cooking" placeholder="Raw, Boiled.."> <br>
+                    <input id="foodBtn" type ="submit" name="food" value = "Add Food"><br>
                 </form>
             </div>
                     
 
             <div id="form2" style="display:none"> 
-                <form id="frm2" action="includes/excercise.php" autocomplete="on" method="POST">
-        Excercise type <input type = "text" id="Excercise" name = "Excerise" placeholder="Climbing, Running, etc.."> <br>
-        Duration (Mins)<input type = "text" id="Duration" name = "Duration" placeholder="15"> <br>
-        Intensity <input type = "text" id="Intensity" name = "Intensity" placeholder="1-5, 5 is the most"> <br>
-        Outside or Inside? <input type = "text" id="Outside" name = "Outside" placeholder="O or I"> <br>  
-                    <input type ="submit" name="excercise" onClick = "addExcerciseItem()" value = "Add Excercise"><br><br>
+                <form id="addExc" name="addExc" autocomplete="on">
+        Excercise type <input type = "text" id="excercise" name = "Excercise" placeholder="Climbing, Running, etc.."> <br>
+        Duration (Mins)<input type = "text" id="duration" name = "Duration" placeholder="15"> <br>
+        Intensity <input type = "text" id="intensity" name = "Intensity" placeholder="1-5, 5 is the most"> <br>
+        Outside or Inside? <input type = "text" id="outside" name = "Outside" placeholder="O or I"> <br>  
+                    <input type ="submit" name="excercise" id="excerciseBtn" value = "Add Excercise"><br><br>
                 </form>
 
             </div>  
     
             <div id="form3" style="display:none" style="text-align:left">
-                <form id="frm3" action="includes/drink.php" autocomplete="on" method="POST">
-        Drink <input type = "text" id="Drink" name = "Drink" placeholder="Beer, Water, Coke.."> <br>
-        Amount (ml)<input type = "text" id="Volume" name = "Volume" placeholder="100"> <br>
-        Alcohol? <input type = "text" id="Alcohol" name = "Alcohol" placeholder="Y or N"> <br> 
-                    <input type ="submit" name="drink" onClick = "addConsumableItem()" value = "Add Drink">
+                <form id="addDrink" name="addDrink" autocomplete="on">
+        Drink <input type="text" id="drink" name="Drink" required="required" placeholder="Beer, Water, Coke.."> <br>
+        Amount (ml)<input type="text" id="volume" name="Volume" required="required" placeholder="100"> <br>
+        Alcohol? <input type="text" id="alcohol" name="Alcohol" required="required" placeholder="Percentage or N"> <br> 
+                    <input type="submit" name="drink" id="drinkBtn" value = "Add Drink">
                 </form>
+                                        
             </div>
             </div>
                                 
@@ -98,8 +102,8 @@
                      <input class="registerbutton" id="registerToggle" type="submit" onClick = "registerToggle()" value="Register">
             </label>
             <div id="login" style="display:blocked">
-                <form  id="frmLogin" action="includes/checklogin.php" autocomplete="on">
-                     <h5 id="id07"> Register Successful</h5>
+                <form id="frmLogin" name="login" autocomplete="on">
+                     <h5 id="id07"> Click Register to make a new account</h5>
                        <h6 id="id08">Please log in to continue:</h6> 
                     <p>
                     </p> 
@@ -109,14 +113,14 @@
                      </p>
                      <p> 
                           <label for="password" class="youpasswd" data-icon="p">Password:</label>
-                          <input id="loginPassword" name="password" required="required" type="password" placeholder="Password" /> 
+                          <input id="loginPassword" autocomplete="on" name="password" required="required" type="password" placeholder="Password" /> 
                      </p>
-                     <p class="keeplogin"> 
+                     <!--p class="keeplogin"> 
                           <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
                           <label for="loginkeeping">Keep me logged in</label>
-                     </p>
+                     </p-->
                      <p class="login button"> 
-                          <input name="login" type="submit" value="Login" /> 
+                          <input name="loginButton" id="loginButton" type="submit" value="Login" /> 
                      </p>
                 </form>
             </div>
@@ -125,18 +129,18 @@
             <form action="includes/register.php" autocomplete="on" method="POST"> 
                 <h1> Sign up </h1> 
                 <p> 
-                     <label for="name" class="name" data-icon="u">First Name:</label>
+                     <label for="name" class="name">First Name:</label>
                      <input type="text"id="name" name="name" required="required" type="text" placeholder="First" />
-                     <label for="last" class="lname" data-icon="u">Last Name:</label>
+                     <label for="last" class="lname">Last Name:</label>
                      <input id="last" name="last" required="required" type="text" placeholder="Last" />
-                     <label for="username" class="uname" data-icon="u">Username:</label>
+                     <label for="username" class="uname">Username:</label>
                      <input id="username" name="username" required="required" type="text" placeholder="Username" />
-                     <label for="password" class="password" data-icon="p">Password:</label>
-                     <input id="password" name="password" required="required" type="password" placeholder="Password"/>
+                     <label for="password" class="password">Password:</label>
+                     <input id="password" autocomplete="on" name="password" required="required" type="password" placeholder="Password"/>
                     <!-- issue with password confirm maybe-->
                      <!-- label for="passwordConfirm" class="password" data-icon="p">Confirm Password:</label>
                      <input id="passwordConfirm" name="passwordsignup_confirm" required="required" type="password" placeholder="Password"/-->
-                     <label for="email" class="email" data-icon="e" >Email:</label>
+                     <label for="email" class="email">Email:</label>
                      <input id="email" name="email" required="required" type="text" placeholder="example@domain.com"/> 
                     <label>Date of Birth:</label>
                      <select name="month" onChange="changeDate(this.options[selectedIndex].value);">
@@ -221,31 +225,13 @@
         </div>
     </div>
             
-    <script type="text/javascript">
-        function testPass() {
-            var username = document.getElementById("uname").value;
-            var passwrd = document.getElementById("passwd").value;
-            var creds = "uname="+username+"&passwd="+passwrd;
-            var ajx = new XMLHttpRequest();
-            ajx.onreadystatechagne = function () {
-                if (ajx.readyState == 4 && ajx.status == 200) {
-                    document.getElementById("message").innerHTML = ajx.responseText;
-                }
-            };
-            ajx.open("POST", "authenticate.php", true);
-            ajx.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            ajx.send(creds);
-            //document.getElementById("message").innerHTML = creds;
-        }
-    </script>
-            
             <div class="row align-items-end">
-                <h3 id="id03">  <input type ="submit" id="Calculate" onClick = "calculate()" value = "Water!"><br><br></h3>
+                <h3 id="id03"> <input type ="submit" id="returnFood" value = "Refresh"><br><br></h3>
             </div>
 </div>
             <body></body>
     <script src="water.js"></script>
-    <script src="bundle.js"></script>
 </html>
+    
     
     

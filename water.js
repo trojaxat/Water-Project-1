@@ -1,11 +1,13 @@
 /////////////Start//////////////
 var base = 0;
-var loggedInUser = ["dan","dan"];
+var loggedInUser = [];
+var loggedInFakeUser = ["fake","fake"];
+
 init();
 
    
 function init() {
-    eventListeners();
+    eventListeners(); 
     checkedOption();
     //baseQuestions();
     //html();
@@ -263,7 +265,8 @@ function eventListeners() {
             }).done(function (response) {
                 console.log(response);
                 loggedInUser.push(username);  // this is added even if the login was unsuccessful
-                loggedInUser.push(password);  // needs to be hashed or hidden  
+                loggedInUser.push(password);  // needs to be hashed or hidden
+                checkQuestions();
                 document.getElementById('id07').innerHTML = response;
             });
         });
@@ -347,8 +350,43 @@ function eventListeners() {
             });
         });
     
+    document.getElementById('logoutbutton').addEventListener('click', function (event) {
+        event.preventDefault();
+        loggedInUser = [];
+        //remove cookies required, change to reload water.html
+           $.ajax({
+                data: loggedInUser,
+                method: 'POST',
+                url: "includes/logOut.php",
+            });
+
+        window.location.href = 'http://localhost/Water-Project-1/waterlogged.html'
+        });
+    
 }
 
+//////////////Retrieving Information For User//////////////////////
+
+function checkQuestions() {
+        document.getElementById('frmLogin').style.display = "none";
+        document.getElementById('id09').style.display = "block";
+        document.getElementById('logoutbutton').style.display = "block";
+        document.getElementById('registerToggle').style.display = "none";
+
+    //make a call to mysql to check if questions answered
+    if (loggedInUser[0] === "dan") {
+        document.getElementById('id08').innerHTML = "Previously answered questions:";
+        document.getElementById('checkUserData').style.display = "block";
+        document.getElementById('checkUserQues').style.display = "block";
+
+    } else {
+        document.getElementById('id08').innerHTML = "Please answer a few questions:";
+        document.getElementById('answerQues').style.display = "block";
+        document.getElementById('id09').innerHTML = "Dates";
+
+    }
+
+}
 
 function checkedOption() {  
     if (document.getElementById("frm0Food").checked == true) { 
@@ -380,3 +418,4 @@ function registerToggle() {
         x.value = "Login";
     }
 }
+

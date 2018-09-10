@@ -99,12 +99,29 @@
                 </div>
         <div class="col-sm" id="loginColumn" style="text-align:left">
             <label for="id07">
-                     <input class="registerbutton" id="registerToggle" type="submit" onClick = "registerToggle()" value="Register">
+                     <input class="registerbutton" style="display:block" id="registerToggle" type="submit" onClick="registerToggle()" value="Register">
+                     <input class="logoutbutton" style="display:none" id="logoutbutton" type="submit" value="Log Out">
             </label>
             <div id="login" style="display:blocked">
-                <form id="frmLogin" name="login" autocomplete="on">
-                     <h5 id="id07"> Register Successful</h5>
+                    <h5 id="id07"> Register Successful</h5>
                        <h6 id="id08">Please log in to continue:</h6> 
+                
+                         <p class="load user questions button"> 
+                          <input name="checkUserQues" style="display:none" id="checkUserQues" type="submit" value="Questions" />
+                         </p>
+                
+                         <p class="load user questions button"> 
+                          <input name="answerQues" style="display:none" id="answerQues" type="submit" value="Answer Questions" />
+                         </p>
+                
+                        <h6 id="id09" style="display:none">Previous dates: </h6> 
+                
+                         <p class="load user data button"> 
+                          <input name="checkUserData" style="display:none" id="checkUserData" type="submit" value="Dates" />
+                         </p>
+                
+                <form id="frmLogin" style="display:block" name="login" autocomplete="on">
+
                     <p>
                     </p> 
                      <p> 
