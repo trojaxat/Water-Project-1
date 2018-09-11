@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['register'])) {
+//if (isset($_POST['register'])) {              // required for json maybe
 	
   include_once 'adblogin.php';
 	
@@ -15,15 +15,15 @@ if (isset($_POST['register'])) {
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
     
   if(empty($name) || empty($last) || empty($username) || empty($email) || empty($day) || empty($month) || empty($year) || empty($gender) || empty($password)) {
-	  header("Location: ../waterregister.php?register=empty");
+	  echo"One of the fields is empty";
 	  exit();
 	} else {
 			if (!preg_match("/^[a-zA-Z]*$/", $name) || !preg_match("/^[a-zA-Z]*$/", $last)) {
-				header("Location: ../waterregister.php?register=invalid");
+	        echo"One of the fields has got the wrong format";
 		    exit();
 	    } else {
 		    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			    header("Location: ../waterregister.php?register=email");
+                echo"Email address is invalid";
 			    exit();
 		  } else {
 			  $sql = "SELECT * FROM web_members WHERE username='$username'";
@@ -31,13 +31,13 @@ if (isset($_POST['register'])) {
 			  $resultCheck = mysqli_num_rows($result);
 			
 			  if ($resultCheck > 0) {
-				  header("Location: ../waterregister.php?register=usertaken");
+                  echo"Username is already taken";
 				  exit();
 			  } else {
                   $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
                   $sql = "INSERT INTO web_members (name, last, username, email, password, day, month, year, gender) VALUES ('$name', '$last', '$username', '$email', '$hashedPwd', '$day', '$month', '$year', '$gender');";
                   mysqli_query($conn, $sql);
-                  header("Location: ../waterlogged.html"); 
+                  echo"User successfully registered";
 				  exit();
                 }
 			}
@@ -45,9 +45,9 @@ if (isset($_POST['register'])) {
 	}  
 
 
-} else {
-		header("Location: ../waterregister.php"); 
+/*} else {
+        echo"Connection compromised";
 		exit();
-}
+}*/
 
 ?>

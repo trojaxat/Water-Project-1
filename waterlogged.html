@@ -8,6 +8,8 @@
         <!-- bootstrap link css link -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         
+        <!-- Json -->
+        
         <!-- jquery link -->
         <script src="jquery-3.3.1.min.js"></script>
         
@@ -147,7 +149,7 @@
                 <h1> Sign up </h1> 
                 <p> 
                      <label for="name" class="name">First Name:</label>
-                     <input type="text"id="name" name="name" required="required" type="text" placeholder="First" />
+                     <input type="text" id="name" name="name" required="required" type="text" placeholder="First" />
                      <label for="last" class="lname">Last Name:</label>
                      <input id="last" name="last" required="required" type="text" placeholder="Last" />
                      <label for="username" class="uname">Username:</label>
@@ -160,7 +162,7 @@
                      <label for="email" class="email">Email:</label>
                      <input id="email" name="email" required="required" type="text" placeholder="example@domain.com"/> 
                     <label>Date of Birth:</label>
-                     <select name="month" onChange="changeDate(this.options[selectedIndex].value);">
+                     <select name="month" id="month" onChange="changeDate(this.options[selectedIndex].value);">
                      <option value="na">Month</option>
                      <option value="1">January</option>
                      <option value="2">February</option>
@@ -226,13 +228,13 @@
                 </p>
                 <p> 
                      <label>Gender:</label>
-                     <select name="gender">
+                     <select name="gender" id="gender">
                      <option value="1">Male</option>
                      <option value="2">Female</option>
                      </select>
                 </p>   
                 <p class="signin button">
-                <input type="submit" name="register" value="Register"/> 
+                <input type="submit" name="register" id="registerBtn" value="Register"/> 
                 </p>
 
             </form>

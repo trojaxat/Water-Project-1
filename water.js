@@ -236,6 +236,36 @@ function calculate(){
 
     
 function eventListeners() {
+    var date = new Date().toISOString().slice(0, 10);
+    
+    document.getElementById('registerBtn').addEventListener('click', function (event) {
+        event.preventDefault();
+        var name = document.getElementById('name').value;
+        var last = document.getElementById('last').value;
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var email = document.getElementById('email').value;
+        var month = document.getElementById('month').value;
+        var day = document.getElementById('day').value;
+        var year = document.getElementById('year').value;
+        var gender = document.getElementById('gender').value;
+        console.log(name,last,username,password,email,month,day,year,gender);
+
+        var regValues = {name:name, last:last, username:username, password:password, email:email, month:month, day:day, year:year, gender:gender}
+        
+            $.ajax({
+                data: regValues,
+                method: 'POST',
+                url: "includes/register.php",
+                //contentType:'application/json',
+                //data: JSON.stringify(drinkValues),
+                //dataType:'json',
+            }).done(function (response) {
+                console.log(response);
+                // use json to add elements to Food etc
+            });
+        });
+    
 	document.getElementById('returnFood').addEventListener('click', function (event) {
         // event.preventDefault();  later I want to change this, so that it is sent with the form.
         // using jquery https://api.jquery.com/serialize/ can send the form data from within javascript
@@ -257,9 +287,12 @@ function eventListeners() {
         var username = document.getElementById('loginUsername').value;
         var password = document.getElementById('loginPassword').value;
         var values = {username:username, password:password}
+        //var myJSON = JSON.stringify(values);
         
             $.ajax({
-                data: values,
+                data:values,
+                //data: {myData:myJSON},
+                //dataType: "json",
                 method: 'POST',
                 url: "includes/checkLogin.php",
             }).done(function (response) {
@@ -278,8 +311,6 @@ function eventListeners() {
         var drink = document.getElementById('drink').value;
         var volume = document.getElementById('volume').value;
         var alcohol = document.getElementById('alcohol').value;
-        var date = new Date().toISOString().slice(0, 10);
-
         
         var drinkValues = {username:username, drink:drink, volume:volume, alcohol:alcohol, date:date}
         
@@ -304,8 +335,6 @@ function eventListeners() {
         var food = document.getElementById('food').value;
         var amount = document.getElementById('amount').value;
         var cooking = document.getElementById('cooking').value;
-        var date = new Date().toISOString().slice(0, 10);
-
         
         var foodValues = {username:username, food:food, amount:amount, cooking:cooking, date:date}
         
@@ -331,8 +360,6 @@ function eventListeners() {
         var duration = document.getElementById('duration').value;
         var intensity = document.getElementById('intensity').value;
         var outside = document.getElementById('outside').value;
-        var date = new Date().toISOString().slice(0, 10);
-
         
         var excValues = {username:username, excercise:excercise, duration:duration, intensity:intensity, outside:outside, date:date}
         
