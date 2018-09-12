@@ -24,6 +24,10 @@ function html() {
 
 /////////////////Water Section//////////////
 function baseQuestions() {
+    document.getElementById('id04').style.display = "none";
+    document.getElementById('id05').style.display = "none";
+    document.getElementById('id06').style.display = "none";
+    
     var name, gender, weight, height, fitness, disease, person;
     name = prompt("What is your name?")
     gender = prompt("Hello " + name + ", are you male or female? m/f");
@@ -304,6 +308,26 @@ function eventListeners() {
             });
         });
     
+    document.getElementById('answerQues').addEventListener('click', function (event) {
+        event.preventDefault();
+            document.getElementById('id04').style.display = "none";
+            document.getElementById('id05').style.display = "none";
+            document.getElementById('id06').style.display = "none";
+            document.getElementById('answerQues').style.display = "none";
+            document.getElementById('returnGraph').style.display = "block";
+
+        baseQuestions();   
+        });
+    
+    document.getElementById('returnGraph').addEventListener('click', function (event) {
+        event.preventDefault();
+            document.getElementById('id04').style.display = "block";
+            document.getElementById('id05').style.display = "block";
+            document.getElementById('id06').style.display = "block";
+            document.getElementById('answerQues').style.display = "block";
+            document.getElementById('returnGraph').style.display = "none";
+         });
+    
     document.getElementById('drinkBtn').addEventListener('click', function (event) {
         event.preventDefault();
         
@@ -380,7 +404,6 @@ function eventListeners() {
     document.getElementById('logoutbutton').addEventListener('click', function (event) {
         event.preventDefault();
         loggedInUser = [];
-        //remove cookies required, change to reload water.html
            $.ajax({
                 data: loggedInUser,
                 method: 'POST',
