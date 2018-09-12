@@ -1,6 +1,6 @@
 <?php
 
-//if (isset($_POST['register'])) {              // required for json maybe
+//if (isset($_POST['register'])) {              // required for json 
 	
   include_once 'adblogin.php';
 	
