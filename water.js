@@ -24,9 +24,14 @@ function html() {
 
 /////////////////Water Section//////////////
 function baseQuestions() {
-    document.getElementById('id04').style.display = "none";
-    document.getElementById('id05').style.display = "none";
-    document.getElementById('id06').style.display = "none";
+   var f1,f2,f3;
+   f1 = document.getElementById('id04');
+   f2 = document.getElementById('id05');
+   f3 = document.getElementById('id06');
+
+    f1.style.display = "none";
+    f2.style.display = "none";
+    f3.style.display = "none";
     
     var name, gender, weight, height, fitness, disease, person;
     name = prompt("What is your name?")
@@ -46,6 +51,9 @@ function baseQuestions() {
             disease: disease
         };
     }
+    f1.style.display = "block";
+    f2.style.display = "block";
+    f3.style.display = "block";
     return personObj = person(name, gender, weight, height, fitness, disease);
 }
 
@@ -253,8 +261,6 @@ function eventListeners() {
         var day = document.getElementById('day').value;
         var year = document.getElementById('year').value;
         var gender = document.getElementById('gender').value;
-        console.log(name,last,username,password,email,month,day,year,gender);
-
         var regValues = {name:name, last:last, username:username, password:password, email:email, month:month, day:day, year:year, gender:gender}
         
             $.ajax({
@@ -265,7 +271,11 @@ function eventListeners() {
                 //data: JSON.stringify(drinkValues),
                 //dataType:'json',
             }).done(function (response) {
+                registerToggle();
                 console.log(response);
+                document.getElementById('id07').innerHTML = response;
+                document.getElementById('id08').innerHTML = "Please log in to continue:";
+
                 // use json to add elements to Food etc
             });
         });
@@ -278,7 +288,6 @@ function eventListeners() {
 	        url: 'includes/ajaxTest.php',
         }).done(function (response) {
             console.log(response);
-
             document.getElementById('graphFood').innerHTML = response;
             var obj = JSON.parse(response);
             console.log(obj);
@@ -301,10 +310,14 @@ function eventListeners() {
                 url: "includes/checkLogin.php",
             }).done(function (response) {
                 console.log(response);
-                loggedInUser.push(username);  // this is added even if the login was unsuccessful
-                loggedInUser.push(password);  // needs to be hashed or hidden
                 checkQuestions();
                 document.getElementById('id07').innerHTML = response;
+                    if (response=="Login successful") {
+                        loggedInUser.push(username);  // this is added even if the login was unsuccessful
+                        loggedInUser.push(password);  // needs to be hashed or hidden
+                    } else {
+                        loggedInUser=[];
+                    }
             });
         });
     

@@ -37,7 +37,7 @@
                   $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
                   $sql = "INSERT INTO web_members (name, last, username, email, password, day, month, year, gender) VALUES ('$name', '$last', '$username', '$email', '$hashedPwd', '$day', '$month', '$year', '$gender');";
                   mysqli_query($conn, $sql);
-                  echo"User successfully registered";
+                  echo"Register successful";
 				  exit();
                 }
 			}

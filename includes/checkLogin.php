@@ -24,7 +24,6 @@
             //$stmt = $conn->prepare("SELECT * FROM web_members where username='$username' and password='$password'");
             //$stmt->bind_param("ss", $username, $password);
              $sql = "SELECT * FROM web_members WHERE username = '$username'";
-             //$sql = "SELECT * FROM web_members where username='$username' and password='$password'";
              $result = $conn->query($sql);
             if (mysqli_num_rows($result) == 1) {
                  while($row = $result->fetch_assoc()) {
@@ -34,10 +33,13 @@
                         $_SESSION["username"]=$username;
                         echo "Login successful";
                     } else {
-                        echo"Incorrect user name or password";
+                        echo "Incorrect user name or password";
                     }       
              
                 }
+            } else {
+                echo "Incorrect user name or password";
+
             }
         }
     }
