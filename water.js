@@ -20,6 +20,9 @@ function html() {
     document.getElementById("id02").innerHTML = "<p>You currently need to drink " + result + " litres of water per day.</p>";
 }
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 
 /////////////////Water Section//////////////
@@ -33,18 +36,14 @@ function baseQuestions() {
     f2.style.display = "none";
     f3.style.display = "none";
     
-    var name, gender, weight, height, fitness, disease, person;
-    name = prompt("What is your name?")
-    gender = prompt("Hello " + name + ", are you male or female? m/f");
+    var username, weight, height, fitness, disease, person;
     weight = prompt("How much do you weigh in kilograms?");
     height = prompt("How tall are you in cm?");
     fitness = prompt("How many hours of sport do you generally do a week?");   
     disease = prompt("Do you have any diseases that you take medicine regularly for? y/n");
     
-    function person(name, gender, weight, height, fitness, disease) {
+    function person(weight, height, fitness, disease) {
         return {
-            name:  name,
-            gender: gender,
             weight: weight,
             height: height,
             fitness: fitness,
@@ -54,7 +53,20 @@ function baseQuestions() {
     f1.style.display = "block";
     f2.style.display = "block";
     f3.style.display = "block";
-    return personObj = person(name, gender, weight, height, fitness, disease);
+        
+        var quesValues = {username:username, weight:weight, height:height, fitness:fitness, disease:disease}
+        
+            $.ajax({
+                data: quesValues,
+                method: 'POST',
+                url: "includes/questions.php",
+            }).done(function (response) {
+                console.log(response);
+                document.getElementById('id08').innerHTML = response;
+                document.getElementById('answerQues').value = "Change Answers";
+            });
+    
+    return personObj = person(weight, height, fitness, disease);
 }
 
 function personBaseValue() {
@@ -280,17 +292,23 @@ function eventListeners() {
             });
         });
     
-	document.getElementById('returnFood').addEventListener('click', function (event) {
-        // event.preventDefault();  later I want to change this, so that it is sent with the form.
+	document.getElementById('returnUserInfo').addEventListener('click', function (event) {
+        var username = loggedInUser[0];
         // using jquery https://api.jquery.com/serialize/ can send the form data from within javascript
+        var userValue = {username:username}
+        
         $.ajax({
+            data: userValue,
 	        method: 'POST',
-	        url: 'includes/ajaxTest.php',
+	        url: 'includes/returnUser.php',
         }).done(function (response) {
-            console.log(response);
-            document.getElementById('graphFood').innerHTML = response;
-            var obj = JSON.parse(response);
-            console.log(obj);
+            //recieves a JSON
+            //[{"name":"phil","last":"baits","username":"batey","email":"daaaaa@gmail.com","password":"$2y$10$agNYmZW7DOIcPb3s5FdJu.oqdPUePkJ7JbvHGSyQPYbUQtiL8ny7O","day":"19","month":"11","year":"1980","gender":"1","weight":"50","height":"200","fitness":"1","disease":"1"}]
+            var user = JSON.parse(response);
+            var name = capitalizeFirstLetter(user[0].name);
+            document.getElementById('id01').innerHTML = "Welcome to WaterWorld " + name;
+            // change the function to accept these parameters and give a water value 
+            document.getElementById('id03').innerHTML = "You are " + user[0].height + "cm Tall and weigh " + user[0].weight + "kgs" + " with " + user[0].fitness + " hours of fitness per week you currently need " + "1500 " + "ml of water per day.";
         });
 	});
     
