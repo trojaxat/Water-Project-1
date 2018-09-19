@@ -95,6 +95,11 @@ input[type='submit'] {
 *** Footer Water Value
 **********************************************/
 
+#id003 {
+    font-size: 22px;
+    text-align: justify;
+}
+
 #id03 {  
     background-color: lightblue;
     padding: 10px;

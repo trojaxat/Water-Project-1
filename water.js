@@ -37,6 +37,7 @@ function baseQuestions() {
     f3.style.display = "none";
     
     var username, weight, height, fitness, disease, person;
+    username = loggedInUser[0];
     weight = prompt("How much do you weigh in kilograms?");
     height = prompt("How tall are you in cm?");
     fitness = prompt("How many hours of sport do you generally do a week?");   
@@ -69,32 +70,32 @@ function baseQuestions() {
     return personObj = person(weight, height, fitness, disease);
 }
 
-function personBaseValue() {
+function personBaseValue(user) {
     var newBase, weightManR, weightFemR, heightManR, heightFemR, weightHeightMan, weightHeightFem, diseaseR;
-    
-    weightManR = personObj.weight/82;
-    weightFemR = personObj.weight/67;
-    heightManR = personObj.height/177;
-    heightFemR = personObj.height/163;
+    // change this so that this does something
+    weightManR = user[0].weight/82;
+    weightFemR = user[0].weight/67;
+    heightManR = user[0].height/177;
+    heightFemR = user[0].height/163;
     
     weightHeightMan = (weightManR + heightManR) / 2;
     weightHeightFem = (weightFemR + heightFemR) / 2;
     
-    if (personObj.gender == "m"){
+    if (user[0].gender == "1"){
         newBase = 3.7;
-    } else if (personObj.gender == "f"){
+    } else if (user[0].gender == "2"){
         newBase = 2.7;
     } else {
         newBase = 3.2;
     }
     
-    if (personObj.disease == "y"){
+    if (user[0].disease == "y"){
         diseaseR = 0;
     } else {
         diseaseR = 1;
     }
     
-    if (personObj.gender == "m"){
+    if (user[0].gender == "1"){
         var newBase = newBase * (weightHeightMan * diseaseR);
     } else {
         var newBase = newBase * (weightHeightFem * diseaseR);
@@ -241,6 +242,7 @@ function consumedWaterValue(){
     return additionalWater;
 }
 
+
 function objectWaterValue(){
     var totalList = foodListToday + drinkListToday + alcoholListToday + excerciseListToday;
         for (x = 0; x < foodListToday.length; x++) {
@@ -287,7 +289,6 @@ function eventListeners() {
                 console.log(response);
                 document.getElementById('id07').innerHTML = response;
                 document.getElementById('id08').innerHTML = "Please log in to continue:";
-
                 // use json to add elements to Food etc
             });
         });
@@ -302,13 +303,11 @@ function eventListeners() {
 	        method: 'POST',
 	        url: 'includes/returnUser.php',
         }).done(function (response) {
-            //recieves a JSON
-            //[{"name":"phil","last":"baits","username":"batey","email":"daaaaa@gmail.com","password":"$2y$10$agNYmZW7DOIcPb3s5FdJu.oqdPUePkJ7JbvHGSyQPYbUQtiL8ny7O","day":"19","month":"11","year":"1980","gender":"1","weight":"50","height":"200","fitness":"1","disease":"1"}]
             var user = JSON.parse(response);
             var name = capitalizeFirstLetter(user[0].name);
+            var waterValue = Math.round((personBaseValue(user)*1000));
             document.getElementById('id01').innerHTML = "Welcome to WaterWorld " + name;
-            // change the function to accept these parameters and give a water value 
-            document.getElementById('id03').innerHTML = "You are " + user[0].height + "cm Tall and weigh " + user[0].weight + "kgs" + " with " + user[0].fitness + " hours of fitness per week you currently need " + "1500 " + "ml of water per day.";
+            document.getElementById('id003').innerHTML = "You are " + user[0].height + "cms tall and weigh " + user[0].weight + "kgs" + " with " + user[0].fitness + " hours of fitness per week you currently need " + waterValue + "ml of water per day.";
         });
 	});
     
@@ -328,14 +327,15 @@ function eventListeners() {
                 url: "includes/checkLogin.php",
             }).done(function (response) {
                 console.log(response);
-                checkQuestions();
                 document.getElementById('id07').innerHTML = response;
                     if (response=="Login successful") {
-                        loggedInUser.push(username);  // this is added even if the login was unsuccessful
-                        loggedInUser.push(password);  // needs to be hashed or hidden
+                        loggedInUser.push(username);  
+                        loggedInUser.push(password);  
                     } else {
                         loggedInUser=[];
                     }
+                checkQuestions();
+                returnData();
             });
         });
     
@@ -378,7 +378,6 @@ function eventListeners() {
                 //dataType:'json',
             }).done(function (response) {
                 console.log(response);
-                // use json to add elements to Food etc
                 addConsumableItem();
             });
         });
@@ -402,7 +401,6 @@ function eventListeners() {
                 //dataType:'json',
             }).done(function (response) {
                 console.log(response);
-                // use json to add elements to Food etc
                 addConsumableItem();
             });
         });
@@ -427,7 +425,6 @@ function eventListeners() {
                 //dataType:'json',
             }).done(function (response) {
                 console.log(response);
-                // use json to add elements to Food etc
                 addExcercise();
             });
         });
@@ -448,25 +445,49 @@ function eventListeners() {
 
 //////////////Retrieving Information For User//////////////////////
 
+function returnData() {
+    //event.preventDefault();
+    var username = loggedInUser[0];
+    var userValue = {username:username}
+    
+    $.ajax({
+                data: userValue,
+                method: 'POST',
+                url: "includes/returnData.php",
+            }).done(function (response) {
+                console.log(response); //JSON
+                var data = JSON.parse(response);
+                console.log(data); 
+                // loop through this retrieved JSON to add buttons for dates which are available for the person to check their history
+            });    
+}
+
 function checkQuestions() {
         document.getElementById('frmLogin').style.display = "none";
         document.getElementById('id09').style.display = "block";
         document.getElementById('logoutbutton').style.display = "block";
         document.getElementById('registerToggle').style.display = "none";
-
-    //make a call to mysql to check if questions answered
-    if (loggedInUser[0] === "dan") {
-        document.getElementById('id08').innerHTML = "Previously answered questions:";
-        document.getElementById('checkUserData').style.display = "block";
-        document.getElementById('checkUserQues').style.display = "block";
-
-    } else {
-        document.getElementById('id08').innerHTML = "Please answer a few questions:";
-        document.getElementById('answerQues').style.display = "block";
-        document.getElementById('id09').innerHTML = "Dates";
-
-    }
-
+        var username = loggedInUser[0];
+        var userValue = {username:username}
+    
+    $.ajax({
+                data:userValue,
+                method: 'POST',
+                url: "includes/returnAnswers.php",
+            }).done(function (response) {
+                var user = JSON.parse(response);
+        
+                if (user[0].weight != "0") {
+                    document.getElementById('id08').innerHTML = "Previously answered questions:";
+                    document.getElementById('checkUserData').style.display = "block";
+                    document.getElementById('answerQues').style.display = "block";
+                } else {
+                    document.getElementById('id08').innerHTML = "Please answer a few questions:";
+                    document.getElementById('answerQues').style.display = "block";
+                    document.getElementById('checkUserData').style.display = "block";
+                    document.getElementById('id09').innerHTML = "Dates";
+                }
+            });
 }
 
 function checkedOption() {  

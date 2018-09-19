@@ -44,10 +44,4 @@
 		}
 	}  
 
-
-/*} else {
-        echo"Connection compromised";
-		exit();
-}*/
-
 ?>

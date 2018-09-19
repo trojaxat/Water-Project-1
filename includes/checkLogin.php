@@ -1,8 +1,5 @@
 <?php
-/*if(isset($_POST['myData'])){
- $obj = json_decode($_POST['myData']);
-    var_dump(json_decode($_POST['myData']));
- //some php operation*/
+
   include_once 'adblogin.php';
 
 
@@ -43,10 +40,5 @@
             }
         }
     }
-                
-/*} else {
-    echo"JSON error";
-    exit();
-}*/
 
 ?>
