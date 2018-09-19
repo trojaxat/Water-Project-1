@@ -306,7 +306,8 @@ function eventListeners() {
             var user = JSON.parse(response);
             var name = capitalizeFirstLetter(user[0].name);
             var waterValue = Math.round((personBaseValue(user)*1000));
-            document.getElementById('id01').innerHTML = "Welcome to WaterWorld " + name;
+            var time = new Date().toLocaleDateString();
+            document.getElementById('id01').innerHTML = "WaterWorld: " + time + " " + name;
             document.getElementById('id003').innerHTML = "You are " + user[0].height + "cms tall and weigh " + user[0].weight + "kgs" + " with " + user[0].fitness + " hours of fitness per week you currently need " + waterValue + "ml of water per day.";
         });
 	});
